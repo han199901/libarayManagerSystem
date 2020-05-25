@@ -21,6 +21,7 @@
     <dbcp.version>1.4</dbcp.version>
     <jackson.version>2.9.9</jackson.version>
     <mysql.connector.version>5.1.47</mysql.connector.version>
+    <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
   </properties>
 
   <dependencies>
@@ -75,7 +76,7 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
+      <version>${javax.servlet-api.version}</version>
       <scope>provided</scope>
     </dependency>
 
