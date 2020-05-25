@@ -2,7 +2,7 @@
 
 #### 基于Spring+Spring MVC(Maven方式构建)
 ### 项目简介
-本图书管理系统基于 Spring, Spring MVC,数据库为MySQLl。
+本图书管理系统基于 Spring, Spring MVC,数据库为MySQL。
 
 ### 系统功能
 该系统实现读者和管理员登陆，图书的增删改查，读者的增删改查，借还图书，密码修改，借阅卡等功能。
