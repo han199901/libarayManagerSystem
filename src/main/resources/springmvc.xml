@@ -45,5 +45,11 @@
     <mvc:resources mapping="lib/**"
                    location="/static/lib/"
                    cache-period="31556926" />
+    <mvc:resources mapping="bundles/**"
+                   location="/static/bundles/"
+                   cache-period="31556926" />
+    <mvc:resources mapping="plugins/**"
+                   location="/static/plugins/"
+                   cache-period="31556926" />
 
 </beans>
