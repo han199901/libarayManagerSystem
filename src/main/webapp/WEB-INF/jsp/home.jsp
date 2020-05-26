@@ -43,11 +43,11 @@
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="nav-link icon menu_toggle"><i class="fe fe-align-center"></i></a>
                     <a href="blank.html" class="nav-link icon"><i class="fe fe-search" data-toggle="tooltip" data-placement="right" title="Search..."></i></a>
+                    <a href="javascript:void(0)" class="nav-link icon right_tab"><i class="fe fe-bell"></i></a>
                     <a href="javascript:void(0)" class="nav-link icon settingbar"><i class="fe fe-settings"></i></a>
                 </div>
             </div>
             <div class="hright">
-                <a href="javascript:void(0)" class="nav-link icon right_tab"><i class="fe fe-align-right"></i></a>
                 <a href="login.html" class="nav-link icon settingbar"><i class="fe fe-power"></i></a>
             </div>
         </div>
@@ -308,47 +308,6 @@
                                     <a class="dropdown-item" href="blank.html"><img class="w20 mr-2" src="../assets/images/flags/es.svg" alt="">Spanish</a>
                                     <a class="dropdown-item" href="blank.html"><img class="w20 mr-2" src="../assets/images/flags/jp.svg" alt="">japanese</a>
                                     <a class="dropdown-item" href="blank.html"><img class="w20 mr-2" src="../assets/images/flags/bl.svg" alt="">France</a>
-                                </div>
-                            </div>
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <ul class="list-unstyled feeds_widget">
-                                        <li>
-                                            <div class="feeds-left">
-                                                <span class="avatar avatar-blue"><i class="fa fa-check"></i></span>
-                                            </div>
-                                            <div class="feeds-body ml-3">
-                                                <p class="text-muted mb-0">Campaign <strong class="text-blue font-weight-bold">Holiday</strong> is nearly reach budget limit.</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left">
-                                                <span class="avatar avatar-green"><i class="fa fa-user"></i></span>
-                                            </div>
-                                            <div class="feeds-body ml-3">
-                                                <p class="text-muted mb-0">New admission <strong class="text-green font-weight-bold">32</strong> in computer department.</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left">
-                                                <span class="avatar avatar-red"><i class="fa fa-info"></i></span>
-                                            </div>
-                                            <div class="feeds-body ml-3">
-                                                <p class="text-muted mb-0">6th sem result <strong class="text-red font-weight-bold">67%</strong> in computer department.</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left">
-                                                <span class="avatar avatar-azure"><i class="fa fa-thumbs-o-up"></i></span>
-                                            </div>
-                                            <div class="feeds-body ml-3">
-                                                <p class="text-muted mb-0">New Feedback <strong class="text-azure font-weight-bold">53</strong> for university assessment.</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
                                 </div>
                             </div>
                             <div class="dropdown d-flex">
