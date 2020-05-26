@@ -42,7 +42,7 @@
                 <a class="header-brand" href="index.html"><i class="fa fa-graduation-cap brand-logo"></i></a>
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="nav-link icon menu_toggle"><i class="fe fe-align-center"></i></a>
-                    <a href="blank.html" class="nav-link icon"><i class="fe fe-search" data-toggle="tooltip" data-placement="right" title="Search..."></i></a>
+                    <a href="/blank" class="nav-link icon"><i class="fe fe-search" data-toggle="tooltip" data-placement="right" title="Search..."></i></a>
                     <a href="javascript:void(0)" class="nav-link icon right_tab"><i class="fe fe-bell"></i></a>
                     <a href="javascript:void(0)" class="nav-link icon settingbar"><i class="fe fe-settings"></i></a>
                 </div>
@@ -258,19 +258,19 @@
                 <nav class="sidebar-nav">
                     <ul class="metismenu">
                         <li class="g_heading">主要</li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-dashboard"></i><span>仪表盘</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-black-tie"></i><span>图书查询</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-user-circle-o"></i><span>我的借阅</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-users"></i><span>我的信用</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-users"></i><span>我的借阅证</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-graduation-cap"></i><span>我的愿望</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-book"></i><span>历史借阅</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-bullhorn"></i><span>账号管理</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-dashboard"></i><span>仪表盘</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-black-tie"></i><span>图书查询</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-user-circle-o"></i><span>我的借阅</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-users"></i><span>我的信用</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-users"></i><span>我的借阅证</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-graduation-cap"></i><span>我的愿望</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-book"></i><span>历史借阅</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-bullhorn"></i><span>账号管理</span></a></li>
                         <li class="g_heading">其他</li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-calendar"></i><span>热门图书</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-comments-o"></i><span>日程安排</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-address-book"></i><span>借阅室</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="blank.html"><i class="fa fa-folder"></i><span>FAQ</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-calendar"></i><span>热门图书</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-comments-o"></i><span>日程安排</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-address-book"></i><span>借阅室</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-folder"></i><span>FAQ</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -303,23 +303,23 @@
                             <div class="dropdown d-flex">
                                 <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-language"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="blank.html"><img class="w20 mr-2" src="../assets/images/flags/us.svg" alt="">English</a>
+                                    <a class="dropdown-item" href="/blank"><img class="w20 mr-2" src="../assets/images/flags/us.svg" alt="">English</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="blank.html"><img class="w20 mr-2" src="../assets/images/flags/es.svg" alt="">Spanish</a>
-                                    <a class="dropdown-item" href="blank.html"><img class="w20 mr-2" src="../assets/images/flags/jp.svg" alt="">japanese</a>
-                                    <a class="dropdown-item" href="blank.html"><img class="w20 mr-2" src="../assets/images/flags/bl.svg" alt="">France</a>
+                                    <a class="dropdown-item" href="/blank"><img class="w20 mr-2" src="../assets/images/flags/es.svg" alt="">Spanish</a>
+                                    <a class="dropdown-item" href="/blank"><img class="w20 mr-2" src="../assets/images/flags/jp.svg" alt="">japanese</a>
+                                    <a class="dropdown-item" href="/blank"><img class="w20 mr-2" src="../assets/images/flags/bl.svg" alt="">France</a>
                                 </div>
                             </div>
                             <div class="dropdown d-flex">
                                 <a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
                                     <span class="avatar" style="background-image: url(../assets/images/xs/avatar5.jpg)"></span> George</a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="blank.html"><i class="dropdown-icon fe fe-user"></i> 个人信息</a>
-                                    <a class="dropdown-item" href="blank.html"><i class="dropdown-icon fe fe-settings"></i>修改密码</a>
-                                    <a class="dropdown-item" href="blank.html"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="dropdown-icon fa fa-bell"></i>系统消息</a>
+                                    <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-user"></i> 个人信息</a>
+                                    <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-settings"></i>修改密码</a>
+                                    <a class="dropdown-item" href="/blank"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="dropdown-icon fa fa-bell"></i>系统消息</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-help-circle"></i>帮助</a>
-                                    <a class="dropdown-item" href="blank.html"><i class="dropdown-icon fe fe-log-out"></i>退出账号</a>
+                                    <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-log-out"></i>退出账号</a>
                                 </div>
                             </div>
                         </div>
@@ -330,7 +330,7 @@
         <!-- Start Page title and tab -->
         <div class="section-body mt-4" style="height: 80%";>
             <div class="container-fluid" style="height: 100%">
-                <iframe id="J_iframe" width="100%" height="100%" src="blank.html" frameborder="0" scrolling="auto" data-id="index_v1.html" seamless></iframe>
+                <iframe id="J_iframe" width="100%" height="100%" src="/blank" frameborder="0" scrolling="auto" data-id="index_v1.html" seamless></iframe>
             </div>
         </div>
         <!-- Start main footer -->
