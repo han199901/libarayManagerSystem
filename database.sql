@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 24/05/2020 10:58:28
+ Date: 27/05/2020 12:51:34
 */
 
 SET NAMES utf8mb4;
@@ -106,6 +106,18 @@ CREATE TABLE `hope`  (
   `time` datetime(0) NOT NULL,
   `advice` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `status` int(0) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for login_log
+-- ----------------------------
+DROP TABLE IF EXISTS `login_log`;
+CREATE TABLE `login_log`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `user_account` int(0) NOT NULL,
+  `ip` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `time` datetime(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
