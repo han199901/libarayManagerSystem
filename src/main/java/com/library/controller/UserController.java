@@ -7,9 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 
-    @RequestMapping("/home")
+    @RequestMapping("/user/home")
     public ModelAndView home () {
-        return new ModelAndView("home");
+        return new ModelAndView("/user/home");
     }
     @RequestMapping("/blank")
     public ModelAndView blank () {

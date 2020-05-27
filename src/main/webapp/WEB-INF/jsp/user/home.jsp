@@ -16,15 +16,15 @@
     <title>Home</title>
 
     <!-- Bootstrap Core and vandor -->
-    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css" />
 
     <!-- Plugins css -->
-    <link rel="stylesheet" href="plugins/summernote/dist/summernote.css"/>
+    <link rel="stylesheet" href="../plugins/summernote/dist/summernote.css"/>
 
 
     <!-- Core css -->
-    <link rel="stylesheet" href="css/style.min.css"/>
-    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="../css/style.min.css"/>
+    <link rel="stylesheet" href="../css/index.css"/>
 
     <style type="text/css">
 
@@ -258,7 +258,7 @@
                 <nav class="sidebar-nav">
                     <ul class="metismenu">
                         <li class="g_heading">主要</li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-dashboard"></i><span>仪表盘</span></a></li>
+                        <li class="left-li active"><a class="J_menuItem" href="/user/dashboard"><i class="fa fa-dashboard"></i><span>仪表盘</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-black-tie"></i><span>图书查询</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-user-circle-o"></i><span>我的借阅</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-users"></i><span>我的信用</span></a></li>
@@ -330,7 +330,7 @@
         <!-- Start Page title and tab -->
         <div class="section-body mt-4" style="height: 80%";>
             <div class="container-fluid" style="height: 100%">
-                <iframe id="J_iframe" width="100%" height="100%" src="/blank" frameborder="0" scrolling="auto" data-id="index_v1.html" seamless></iframe>
+                <iframe id="J_iframe" width="100%" height="100%" src="/user/dashboard" frameborder="0" scrolling="auto" data-id="index_v1.html" seamless></iframe>
             </div>
         </div>
         <!-- Start main footer -->
@@ -343,9 +343,8 @@
                         </div>
                         <div class="col-md-6 col-sm-12 text-md-right">
                             <ul class="list-inline mb-0">
-                                <li class="list-inline-item"><a href="../doc/index.html">Documentation</a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)">Documentation</a></li>
                                 <li class="list-inline-item"><a href="javascript:void(0)">FAQ</a></li>
-                                <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">Buy Now</a></li>
                             </ul>
                         </div>
                     </div>
@@ -356,19 +355,19 @@
 </div>
 
 <!-- Start Main project js, jQuery, Bootstrap -->
-<script src="bundles/lib.vendor.bundle.js"></script>
+<script src="../bundles/lib.vendor.bundle.js"></script>
 
 <!-- Start all plugin js -->
-<script src="bundles/counterup.bundle.js"></script>
-<script src="bundles/apexcharts.bundle.js"></script>
-<script src="bundles/summernote.bundle.js"></script>
+<script src="../bundles/counterup.bundle.js"></script>
+<script src="../bundles/apexcharts.bundle.js"></script>
+<script src="../bundles/summernote.bundle.js"></script>
 
 <!-- Start project main js  and page js -->
-<script src="js/core.js"></script>
-<script src="js/page/index.js"></script>
-<script src="js/page/summernote.js"></script>
+<script src="../js/core.js"></script>
+<script src="../js/page/index.js"></script>
+<script src="../js/page/summernote.js"></script>
 <!-- my js -->
-<script src="js/index.js"></script>
+<script src="../js/index.js"></script>
 </body>
 </html>
 
