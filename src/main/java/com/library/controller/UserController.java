@@ -11,6 +11,8 @@ public class UserController {
     public ModelAndView home () {
         return new ModelAndView("/user/home");
     }
+    @RequestMapping("/user/faq")
+    public ModelAndView faq() { return new ModelAndView("/user/faq");}
     @RequestMapping("/blank")
     public ModelAndView blank () {
         return new ModelAndView("blank");

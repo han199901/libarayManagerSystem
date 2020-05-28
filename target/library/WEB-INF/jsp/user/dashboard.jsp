@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8" />
     <title>
-        Dashboard
+        Dashboard Page
     </title>
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />

@@ -270,7 +270,7 @@
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-calendar"></i><span>热门图书</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-comments-o"></i><span>日程安排</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-address-book"></i><span>借阅室</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-folder"></i><span>FAQ</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/user/faq"><i class="fa fa-folder"></i><span>FAQ</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -340,12 +340,6 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             Copyright © 2019 <a href="https://themeforest.net/user/puffintheme/portfolio">PuffinTheme</a>.
-                        </div>
-                        <div class="col-md-6 col-sm-12 text-md-right">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item"><a href="javascript:void(0)">Documentation</a></li>
-                                <li class="list-inline-item"><a href="javascript:void(0)">FAQ</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
