@@ -51,7 +51,7 @@
                     <i class="fa fa-handshake-o"></i>
                 </div>
                 <div class="value tab-menu" bind="1">
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="愿望次数"> <i class="iconfont " data-icon=""></i> <h1 id="totoal_links">∞</h1> </a>
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="愿望次数"> <i class="iconfont " data-icon=""></i> <h1 id="totoal_links">${hope_times}</h1> </a>
                     <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="愿望次数"> <i class="iconfont " data-icon=""></i><span>愿望次数</span></a>
                 </div>
             </section>
@@ -76,7 +76,7 @@
                     <i class="fa fa-cubes iconfont"></i>
                 </div>
                 <div class="value tab-menu" bind="1">
-                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="公告总数"> <i class="iconfont " data-icon=""></i> <h1 id="total_notices">∞</h1> </a>
+                    <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="公告总数"> <i class="iconfont " data-icon=""></i> <h1 id="total_notices">${notice_num}</h1> </a>
                     <a href="javascript:;" data-url="user-info.html" data-parent="true" data-title="公告总数"> <i class="iconfont " data-icon=""></i><span>公告总数</span></a>
                 </div>
             </section>
@@ -179,17 +179,16 @@
         legend: {
             orient: 'vertical',
             left: 'left',
-            data: [<c:forEach items="${read_type}" var="type">'${type.type_index}', </c:forEach>]
+            data: [<c:forEach items="${read_type}" var="type">'${type.name}', </c:forEach>]
         },
         series: [{
-
             name: '文章总数',
             type: 'pie',
             radius: '55%',
             center: ['50%', '60%'],
             data: [
                 <c:forEach items="${read_type}" var="type">
-                    {value: ${type.count}, name: '${type.type_index}'} ,
+                    {value: ${type.count}, name: '${type.name}'} ,
                 </c:forEach>
             ],
             itemStyle: {
@@ -230,7 +229,9 @@
         },
         xAxis: [{
             type: 'category',
-            data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            data: [<c:forEach items="${months_read_num}" var="num">
+                '${num.months}月',
+                </c:forEach>],
             axisTick: {
                 alignWithLabel: true
             }
@@ -283,7 +284,9 @@
             },
             type: 'bar',
             barWidth: '60%',
-            data: [10, 8, 12, 14, 10, 6, 8, 7, 15, 9, 5, 6]
+            data: [<c:forEach items="${months_read_num}" var="num">
+                '${num.count}',
+            </c:forEach>]
         }]
     };
     // 使用刚指定的配置项和数据显示图表。
