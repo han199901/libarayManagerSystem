@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,7 +95,12 @@
                     书籍类型占比
                 </div>
                 <div class="panel-body">
-                    <div class="echarts" id="area" style="height:300px; height:350px"></div>
+                    <c:if test="${fn:length(read_type)>0}">
+                        <div class="echarts" id="area" style="height:300px; height:350px"></div>
+                    </c:if>
+                    <c:if test="${fn:length(read_type)<=0}">
+                        <div style="height:300px; height:350px">你还没有借阅过书籍</div>
+                    </c:if>
                 </div>
             </section>
         </div>
@@ -104,7 +110,13 @@
                     借阅年度统计
                 </div>
                 <div class="panel-body">
-                    <div class="echarts" id="years" style="height:300px; height:350px"></div>
+
+                    <c:if test="${fn:length(months_read_num)>0}">
+                        <div class="echarts" id="years" style="height:300px; height:350px"></div>
+                    </c:if>
+                    <c:if test="${fn:length(months_read_num)<=0}">
+                        <div style="height:300px; height:350px">你今年还没有借阅过书籍</div>
+                    </c:if>
                 </div>
             </section>
         </div>
