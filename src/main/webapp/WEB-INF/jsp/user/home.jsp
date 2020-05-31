@@ -259,8 +259,13 @@
                     <ul class="metismenu">
                         <li class="g_heading">主要</li>
                         <li class="left-li active"><a class="J_menuItem" href="/user/dashboard"><i class="fa fa-dashboard"></i><span>仪表盘</span></a></li>
+<<<<<<< HEAD
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-black-tie"></i><span>图书查询</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/user/borrowhistory"><i class="fa fa-user-circle-o"></i><span>我的借阅</span></a></li>
+=======
+                        <li class="left-li"><a class="J_menuItem" href="/user/search"><i class="fa fa-black-tie"></i><span>图书查询</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-user-circle-o"></i><span>我的借阅</span></a></li>
+>>>>>>> c72a478024d80594896543dc9fb5087740750811
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-users"></i><span>我的信用</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-users"></i><span>我的借阅证</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-graduation-cap"></i><span>我的愿望</span></a></li>

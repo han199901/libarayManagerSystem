@@ -1,0 +1,32 @@
+body, html { font-size: 100%; 	padding: 0; margin: 0;}
+
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+input::-webkit-input-placeholder {
+	color:white;
+}
+.search-wrapper .close::before, .search-wrapper .close::after {
+    background: #000;
+}
+#search-img {
+	position: absolute;
+	height:300px;
+}
+
+body{
+	color: #fff;
+	font-weight: 500;
+	font-size: 1.05em;
+	font-family: "Microsoft YaHei","宋体","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif, FreeSans, Arimo;
+}
+a{color: #2fa0ec;text-decoration: none;outline: none;}
+a:hover,a:focus{color:#74777b;}
