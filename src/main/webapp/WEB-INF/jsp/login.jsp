@@ -11,34 +11,35 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>登录</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/sign-up-login.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/inputEffect.css" />
-    <link rel="stylesheet" href="css/tooltips.css" />
-    <link rel="stylesheet" href="css/spop.min.css" />
+    <link rel="stylesheet" href="css/inputEffect.css"/>
+    <link rel="stylesheet" href="css/tooltips.css"/>
+    <link rel="stylesheet" href="css/spop.min.css"/>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/snow.js"></script>
     <script src="js/jquery.pure.tooltips.js"></script>
     <script src="js/spop.min.js"></script>
     <script>
-        (function() {
+        (function () {
             // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
             if (!String.prototype.trim) {
-                (function() {
+                (function () {
                     // Make sure we trim BOM and NBSP
                     var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-                    String.prototype.trim = function() {
+                    String.prototype.trim = function () {
                         return this.replace(rtrim, '');
                     };
                 })();
             }
 
-            [].slice.call(document.querySelectorAll('input.input__field')).forEach(function(inputEl) {
+            [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
                 // in case the input is already filled..
                 if (inputEl.value.trim() !== '') {
                     classie.add(inputEl.parentNode, 'input--filled');
@@ -60,25 +61,25 @@
             }
         })();
 
-        $(function() {
-            $('#login #login-password').focus(function() {
+        $(function () {
+            $('#login #login-password').focus(function () {
                 $('.login-owl').addClass('password');
-            }).blur(function() {
+            }).blur(function () {
                 $('.login-owl').removeClass('password');
             });
-            $('#login #register-password').focus(function() {
+            $('#login #register-password').focus(function () {
                 $('.register-owl').addClass('password');
-            }).blur(function() {
+            }).blur(function () {
                 $('.register-owl').removeClass('password');
             });
-            $('#login #register-repassword').focus(function() {
+            $('#login #register-repassword').focus(function () {
                 $('.register-owl').addClass('password');
-            }).blur(function() {
+            }).blur(function () {
                 $('.register-owl').removeClass('password');
             });
-            $('#login #forget-password').focus(function() {
+            $('#login #forget-password').focus(function () {
                 $('.forget-owl').addClass('password');
-            }).blur(function() {
+            }).blur(function () {
                 $('.forget-owl').removeClass('password');
             });
         });
@@ -154,38 +155,30 @@
                     'user_account': username,
                     'password': password
                 }
-                var url="http://ip-api.com/json/";
-                $.getJSON(url, function(json) {
-                    data['address']=json;
+                var url = "http://ip-api.com/json/";
+                $.getJSON(url, function (json) {
+                    data['address'] = json;
                     $.ajax({
                         type: "POST",//方法类型
                         data: JSON.stringify(data),
                         dataType: "json",//预期服务器返回的数据类型
-                        url: "/check" ,//url
-                        contentType:"application/json",
+                        url: "/check",//url
+                        contentType: "application/json",
                         success: function (result) {
                             if (result.code == 1) {
-                                location.href="user/home";
-                            }
-                            else {
+                                location.href = "user/home";
+                            } else {
                                 $("#err_m").html("<p style=\"color:red\">用户名或密码错误</p>");
                             }
-
-
                         },
-                        error : function() {
+                        error: function () {
                             $("#err_m").html("<p style=\"color:red\">网络超时请重试</p>");
                         }
                     });
                 });
-
-
-
-
                 return false;
             }
         }
-
         //注册
         function register() {
             var username = $("#register-username").val(),
@@ -258,8 +251,6 @@
                 });
                 flag = true;
             }
-
-
             if (flag) {
                 return false;
             } else { //注册
@@ -268,9 +259,9 @@
                     position: 'top-center',
                     style: 'success',
                     autoclose: 3000,
-                    onOpen: function() {
+                    onOpen: function () {
                         var second = 2;
-                        var showPop = setInterval(function() {
+                        var showPop = setInterval(function () {
                             if (second == 0) {
                                 clearInterval(showPop);
                             }
@@ -278,7 +269,7 @@
                             second--;
                         }, 1000);
                     },
-                    onClose: function() {
+                    onClose: function () {
                         goto_login();
                     }
                 });
@@ -346,7 +337,6 @@
             }
 
 
-
             if (flag) {
                 return false;
             } else { //重置密码
@@ -355,9 +345,9 @@
                     position: 'top-center',
                     style: 'success',
                     autoclose: 3000,
-                    onOpen: function() {
+                    onOpen: function () {
                         var second = 2;
-                        var showPop = setInterval(function() {
+                        var showPop = setInterval(function () {
                             if (second == 0) {
                                 clearInterval(showPop);
                             }
@@ -365,7 +355,7 @@
                             second--;
                         }, 1000);
                     },
-                    onClose: function() {
+                    onClose: function () {
                         goto_login();
                     }
                 });
@@ -412,9 +402,9 @@
 <div class="snow-container"></div>
 <!-- 登录控件 -->
 <div id="login">
-    <input id="tab-1" type="radio" name="tab" class="sign-in hidden" checked />
-    <input id="tab-2" type="radio" name="tab" class="sign-up hidden" />
-    <input id="tab-3" type="radio" name="tab" class="sign-out hidden" />
+    <input id="tab-1" type="radio" name="tab" class="sign-in hidden" checked/>
+    <input id="tab-2" type="radio" name="tab" class="sign-up hidden"/>
+    <input id="tab-3" type="radio" name="tab" class="sign-out hidden"/>
     <div class="wrapper">
         <!-- 登录页面 -->
         <div class="login sign-in-htm">
@@ -431,14 +421,16 @@
                 <div class="pad input-container">
                     <section class="content">
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="text" id="login-username" autocomplete="off" placeholder="请输入用户名" tabindex="1" maxlength="15" />
+								<input class="input__field input__field--hideo" type="text" id="login-username"
+                                       autocomplete="off" placeholder="请输入用户名" tabindex="1" maxlength="15"/>
 								<label class="input__label input__label--hideo" for="login-username">
 									<i class="fa fa-fw fa-user icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
                         <span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="password" id="login-password" placeholder="请输入密码" tabindex="2" maxlength="15" />
+								<input class="input__field input__field--hideo" type="password" id="login-password"
+                                       placeholder="请输入密码" tabindex="2" maxlength="15"/>
 								<label class="input__label input__label--hideo" for="login-password">
 									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
@@ -450,7 +442,8 @@
                 <div class="form-actions">
                     <a tabindex="4" class="btn pull-left btn-link text-muted" onClick="goto_forget()">忘记密码?</a>
                     <a tabindex="5" class="btn btn-link text-muted" onClick="goto_register()">注册</a>
-                    <input class="btn btn-primary" type="button" tabindex="3" onClick="login()" value="登录" style="color:white;" />
+                    <input class="btn btn-primary" type="button" tabindex="3" onClick="login()" value="登录"
+                           style="color:white;"/>
                 </div>
             </form>
         </div>
@@ -469,21 +462,24 @@
                 <div class="pad input-container">
                     <section class="content">
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="text" id="forget-username" autocomplete="off" placeholder="请输入用户名" />
+								<input class="input__field input__field--hideo" type="text" id="forget-username"
+                                       autocomplete="off" placeholder="请输入用户名"/>
 								<label class="input__label input__label--hideo" for="forget-username">
 									<i class="fa fa-fw fa-user icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
                         <span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="text" id="forget-code" autocomplete="off" placeholder="请输入注册码" />
+								<input class="input__field input__field--hideo" type="text" id="forget-code"
+                                       autocomplete="off" placeholder="请输入注册码"/>
 								<label class="input__label input__label--hideo" for="forget-code">
 									<i class="fa fa-fw fa-wifi icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
                         <span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="password" id="forget-password" placeholder="请重置密码" />
+								<input class="input__field input__field--hideo" type="password" id="forget-password"
+                                       placeholder="请重置密码"/>
 								<label class="input__label input__label--hideo" for="forget-password">
 									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
@@ -493,7 +489,7 @@
                 </div>
                 <div class="form-actions">
                     <a class="btn pull-left btn-link text-muted" onClick="goto_login()">返回登录</a>
-                    <input class="btn btn-primary" type="button" onClick="forget()" value="重置密码" style="color:white;" />
+                    <input class="btn btn-primary" type="button" onClick="forget()" value="重置密码" style="color:white;"/>
                 </div>
             </form>
         </div>
@@ -512,28 +508,32 @@
                 <div class="pad input-container">
                     <section class="content">
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="text" id="register-username" autocomplete="off" placeholder="请输入用户名" maxlength="15" />
+								<input class="input__field input__field--hideo" type="text" id="register-username"
+                                       autocomplete="off" placeholder="请输入用户名" maxlength="15"/>
 								<label class="input__label input__label--hideo" for="register-username">
 									<i class="fa fa-fw fa-user icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
                         <span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="password" id="register-password" placeholder="请输入密码" maxlength="15" />
+								<input class="input__field input__field--hideo" type="password" id="register-password"
+                                       placeholder="请输入密码" maxlength="15"/>
 								<label class="input__label input__label--hideo" for="register-password">
 									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
                         <span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="password" id="register-repassword" placeholder="请确认密码" maxlength="15" />
+								<input class="input__field input__field--hideo" type="password" id="register-repassword"
+                                       placeholder="请确认密码" maxlength="15"/>
 								<label class="input__label input__label--hideo" for="register-repassword">
 									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
                         <span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="text" id="register-code" autocomplete="off" placeholder="请输入注册码" />
+								<input class="input__field input__field--hideo" type="text" id="register-code"
+                                       autocomplete="off" placeholder="请输入注册码"/>
 								<label class="input__label input__label--hideo" for="register-code">
 									<i class="fa fa-fw fa-wifi icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
@@ -543,7 +543,7 @@
                 </div>
                 <div class="form-actions">
                     <a class="btn pull-left btn-link text-muted" onClick="goto_login()">返回登录</a>
-                    <input class="btn btn-primary" type="button" onClick="register()" value="注册" style="color:white;" />
+                    <input class="btn btn-primary" type="button" onClick="register()" value="注册" style="color:white;"/>
                 </div>
             </form>
         </div>
