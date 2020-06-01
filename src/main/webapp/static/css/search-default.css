@@ -18,8 +18,18 @@ input::-webkit-input-placeholder {
     background: #000;
 }
 #search-img {
-	position: absolute;
+	position: relative;
 	height:300px;
+}
+.search-box {
+	position: relative;
+	margin: 0 auto;
+	top:35px;
+	left: 35px;
+}
+.search-button-line {
+	height: 70px;
+	width: auto;
 }
 
 body{

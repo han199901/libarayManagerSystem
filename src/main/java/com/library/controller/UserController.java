@@ -17,4 +17,5 @@ public class UserController {
     public ModelAndView blank () {
         return new ModelAndView("blank");
     }
+
 }

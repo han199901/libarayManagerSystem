@@ -12,29 +12,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>jQuery+CSS3创意搜索框特效</title>
+    <title>搜索</title>
 
     <link rel="stylesheet" type="text/css" href="../css/search-default.css" />
 
     <!--必要样式-->
     <link rel="stylesheet" type="text/css" href="../css/search-form.css" />
+    <link rel="stylesheet" type="text/css" href="../plugins/bootstrap/css/bootstrap.min.css">
 
 </head>
 <body>
 
 <form onSubmit="submitFn(this, event);">
     <img id="search-img" src="../images/search.gif" />
-    <div class="search-wrapper">
-        <div class="input-holder">
-            <input type="text" class="search-input" placeholder="请输入关键词" />
-            <button class="search-icon" onClick="searchToggle(this, event);"><span></span></button>
-        </div>
-        <span class="close" onClick="searchToggle(this, event);"></span>
-        <div class="result-container">
-
+    <div class="search-button-line">
+        <div class="search-box">
+            <div class="search-wrapper">
+                <div class="input-holder">
+                    <input type="text" class="search-input" placeholder="请输入关键词" />
+                    <button class="search-icon" onClick="searchToggle(this, event);"><span></span></button>
+                </div>
+                <span class="close" onClick="searchToggle(this, event);"></span>
+            </div>
         </div>
     </div>
 </form>
+<table class="result-container table">
+
+</table>
 
 <script src="../js/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -55,19 +60,27 @@
     }
 
     function submitFn(obj, evt){
-        value = $(obj).find('.search-input').val().trim();
-
-        _html = "您搜索的关键词： ";
+        value = $('.search-input').val().trim();
         if(!value.length){
             _html = "关键词不能为空。";
+            $('.result-container').html(_html);
+            $('.result-container').fadeIn(100);
         }
         else{
-            _html += "<b>" + value + "</b>";
+            url = "../search?bookName="+value;
+            $.getJSON(url,function(json){
+                var _html = "<tr><th>书名</th><th>描述</th><th>出版社</th><th>喜欢人数</th><th>状态</th></tr>"
+                $.each(json,function (i,val) {
+                    _html += ("<tr><td>"+val.name+"</td>"+"<td>"+val.description+"</td>"+"<td>"+val.publish+"</td>"+"<td>"+val.like+"</td>");
+                    if(val.status=='1')
+                        _html += ("<td><button class='button'>可借</button></td>");
+                    else
+                        _html += ("<td><button class='button'>不可借</button></td></tr>");
+                });
+                $('.result-container').html(_html);
+                $('.result-container').fadeIn(100);
+            });
         }
-
-        $(obj).find('.result-container').html('<span>' + _html + '</span>');
-        $(obj).find('.result-container').fadeIn(100);
-
         evt.preventDefault();
     }
 </script>
