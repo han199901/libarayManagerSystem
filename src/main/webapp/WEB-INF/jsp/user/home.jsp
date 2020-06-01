@@ -25,7 +25,12 @@
     <!-- Core css -->
     <link rel="stylesheet" href="../css/style.min.css"/>
     <link rel="stylesheet" href="../css/index.css"/>
-
+    <SCRIPT LANGUAGE="JavaScript">
+        function openwin()
+        {
+            window.open("/user/userMessage", "", "height=250, width=250");
+        }
+    </SCRIPT>
     <style type="text/css">
 
 
@@ -314,7 +319,7 @@
                                 <a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
                                     <span class="avatar" style="background-image: url(../assets/images/xs/avatar5.jpg)"></span> George</a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-user"></i> 个人信息</a>
+                                    <a class="dropdown-item" href="#" onclick="openwin()"><i class="dropdown-icon fe fe-user"></i> 个人信息</a>
                                     <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-settings"></i>修改密码</a>
                                     <a class="dropdown-item" href="/blank"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="dropdown-icon fa fa-bell"></i>系统消息</a>
                                     <div class="dropdown-divider"></div>
