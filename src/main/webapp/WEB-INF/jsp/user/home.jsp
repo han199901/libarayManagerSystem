@@ -25,12 +25,42 @@
     <!-- Core css -->
     <link rel="stylesheet" href="../css/style.min.css"/>
     <link rel="stylesheet" href="../css/index.css"/>
-    <SCRIPT LANGUAGE="JavaScript">
-        function openwin()
-        {
-            window.open("/user/userMessage", "", "height=250, width=250");
+    <style type="text/css">
+        body{
+            margin: 0px;
         }
-    </SCRIPT>
+        .zhezhao{
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            background: #000;
+            width: 100%;
+            height: 100%;
+        }
+        .tankuang{
+            position: relative;
+            background: #fff;
+            width: 50%;
+            height: 80%;
+            border-radius: 5px;
+            margin: 5% auto;
+        }
+        #header{
+            height: 40px;
+        }
+        #header-right{
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            background: red;
+            color: #fff;
+            right: 5px;
+            top: 5px;
+            text-align: center;
+        }
+    </style>
+
     <style type="text/css">
 
 
@@ -270,7 +300,7 @@
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-users"></i><span>我的借阅证</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/user/myhopelist"><i class="fa fa-graduation-cap"></i><span>我的愿望</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-book"></i><span>历史借阅</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-bullhorn"></i><span>账号管理</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/user/userMessage"><i class="fa fa-bullhorn"></i><span>账号管理</span></a></li>
                         <li class="g_heading">其他</li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-calendar"></i><span>热门图书</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/user/calendar"><i class="fa fa-comments-o"></i><span>日程安排</span></a></li>
@@ -319,8 +349,9 @@
                                 <a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
                                     <span class="avatar" style="background-image: url(../assets/images/xs/avatar5.jpg)"></span> George</a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <i class="dropdown-icon fe fe-user"></i> 信誉等级：Lv.${credit}
-                                    <a class="dropdown-item" href="#" onclick="openwin()"><i class="dropdown-icon fe fe-user"></i> 个人信息</a>
+                                    信誉等级：Lv.${credit}
+                                    <a class="dropdown-item" onclick="dianwo()"><i class="dropdown-icon fe fe-user"></i> 个人信息</a>
+
                                     <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-settings"></i>修改密码</a>
                                     <a class="dropdown-item" href="/blank"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="dropdown-icon fa fa-bell"></i>系统消息</a>
                                     <div class="dropdown-divider"></div>
@@ -330,6 +361,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="zhezhao" id='zhezhao'>
+            <div class="tankuang">
+                <div id="header" style="background: white">
+                    <span>我的信息</span>
+                    <div id="header-right" onclick="hidder()">x</div>
+                </div>
+                <div style="width: 100%;height: 100%">
+                    <iframe   src="userMessage" width="100%" height="100%"   frameborder="1" scrolling="yes/no/auto">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -368,6 +411,15 @@
 <script src="../js/page/summernote.js"></script>
 <!-- my js -->
 <script src="../js/index.js"></script>
+<script type="text/javascript">
+    document.getElementById('zhezhao').style.display="none";
+    function dianwo(){
+        document.getElementById('zhezhao').style.display="";
+    }
+    function hidder(){
+        document.getElementById('zhezhao').style.display="none";
+    }
+</script>
 </body>
 </html>
 
