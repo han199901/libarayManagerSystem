@@ -13,7 +13,6 @@
     <style>
         body {
             width: 600px;
-            font-family: 'trebuchet MS', 'Lucida sans', Arial;
             margin-left: inherit;
             margin-top: 10%;
             font-size: 14px;
@@ -91,6 +90,7 @@
         }
     </style>
 </head>
+<body>
     <h2>欢迎查看您的信用分</h2>
     <hr>
     <table class="bordered">
@@ -124,7 +124,7 @@
     </tr>
     <tr>
         <td>如何提高自己的信用分?</td>
-        <td><a href="faq.jsp">帮助</a></td>
+        <td><a href="faq">帮助</a></td>
     </tr>
     </table>
 </body>

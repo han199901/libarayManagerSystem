@@ -1,7 +1,7 @@
 package com.library.controller;
 
 import com.library.pojo.User;
-import com.library.sevice.CreditService;
+import com.library.sevice.HopeListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +12,14 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
 @Controller
-public class CreditController {
-     CreditService creditService;
+public class HopeListController {
+    HopeListService hopeListService;
     @Autowired
-    public void setCreditService(CreditService creditService) {
-        this.creditService = creditService;
+    public void setHopeListService(HopeListService hopeListService) {
+        this.hopeListService = hopeListService;
     }
-
-    @RequestMapping("/user/credit")
-    public ModelAndView credit(HttpServletRequest request) {
+    @RequestMapping("/user/myhopelist")
+    public ModelAndView userMessage(HttpServletRequest request) {
         HttpSession session = request.getSession();
         /*假设已经登录*/
         User tuser = new User();
@@ -33,10 +32,11 @@ public class CreditController {
             view = new ModelAndView("/login");
         }
         else {
-            view = new ModelAndView("/user/credit");
-            HashMap<String,Object> data = (HashMap<String, Object>) creditService.creditDaoData(user);
-            view.addObject("credit",data.get("credit"));
+            view = new ModelAndView("/user/myhopelist");
+            HashMap<String,Object> data = (HashMap<String, Object>) hopeListService.hopeListData(user);
+            view.addObject("hopeList",data.get("hopeList"));
         }
         return view;
     }
+
 }

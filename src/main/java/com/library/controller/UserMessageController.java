@@ -1,7 +1,7 @@
 package com.library.controller;
 
 import com.library.pojo.User;
-import com.library.sevice.CreditService;
+import com.library.sevice.UserMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +12,14 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
 @Controller
-public class CreditController {
-     CreditService creditService;
+public class UserMessageController {
+    UserMessageService userMessageService;
     @Autowired
-    public void setCreditService(CreditService creditService) {
-        this.creditService = creditService;
+    public void setUserMessageService(UserMessageService userMessageService) {
+        this.userMessageService = userMessageService;
     }
-
-    @RequestMapping("/user/credit")
-    public ModelAndView credit(HttpServletRequest request) {
+    @RequestMapping("/user/userMessage")
+    public ModelAndView userMessage(HttpServletRequest request) {
         HttpSession session = request.getSession();
         /*假设已经登录*/
         User tuser = new User();
@@ -33,9 +32,9 @@ public class CreditController {
             view = new ModelAndView("/login");
         }
         else {
-            view = new ModelAndView("/user/credit");
-            HashMap<String,Object> data = (HashMap<String, Object>) creditService.creditDaoData(user);
-            view.addObject("credit",data.get("credit"));
+            view = new ModelAndView("/user/userMessage");
+            HashMap<String,Object> data = (HashMap<String, Object>) userMessageService.userMessageData(user);
+            view.addObject("userMessage",data.get("userMessage"));
         }
         return view;
     }
