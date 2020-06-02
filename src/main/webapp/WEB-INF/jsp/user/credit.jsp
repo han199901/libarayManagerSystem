@@ -124,7 +124,7 @@
     </tr>
     <tr>
         <td>如何提高自己的信用分?</td>
-        <td><a href="/user/faq.jsp">帮助</a></td>
+        <td><a href="faq">帮助</a></td>
     </tr>
     </table>
 </body>
