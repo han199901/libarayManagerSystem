@@ -82,7 +82,7 @@
 
         .zebra tfoot td:only-child{
             -moz-border-radius: 0 0 6px 6px;
-            -webkit-border-radius: 0 0 6px 6px
+            -webkit-border-radius: 0 0 6px 6px;
             border-radius: 0 0 6px 6px
         }
 
@@ -103,6 +103,14 @@
     <tr>
         <td>账户编号</td>
         <td>${num.user_account}</td>
+    </tr>
+    <tr>
+        <td>书籍姓名</td>
+        <td>${num.name}</td>
+    </tr>
+    <tr>
+        <td>书籍出版社</td>
+        <td>${num.publish}</td>
     </tr>
     <tr>
         <td>账户名称</td>
