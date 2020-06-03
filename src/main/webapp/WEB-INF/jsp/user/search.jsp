@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: 韩勇
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="zh">
 <head>
@@ -19,6 +21,34 @@
     <!--必要样式-->
     <link rel="stylesheet" type="text/css" href="../css/search-form.css" />
     <link rel="stylesheet" type="text/css" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+        function borrow(index) {
+            <c:if test="${empty sessionScope.user}">
+            alert("请登录账号");
+            </c:if>
+            <c:if test="${not empty sessionScope.user}">
+            var data={
+                'user_account':"${sessionScope.user.user_account}",
+                'book_index':index
+            }
+            $.ajax({
+                type: "POST",//方法类型
+                data: JSON.stringify(data),
+                dataType: "json",//预期服务器返回的数据类型
+                url: "borrowbook",//url
+                contentType: "application/json",
+                success: function (result) {
+
+                    $("#dd"+data.book_index).html("<button class='button' disabled=ture>不可借</button>");
+                },
+                error: function () {
+                    alert("借阅失败，请重试！");
+                }
+            });
+            </c:if>
+        }
+    </script>
 
 </head>
 <body>
@@ -41,8 +71,9 @@
 
 </table>
 
-<script src="../js/jquery.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
+
     function searchToggle(obj, evt){
         var container = $(obj).closest('.search-wrapper');
 
@@ -73,9 +104,9 @@
                 $.each(json,function (i,val) {
                     _html += ("<tr><td>"+val.name+"</td>"+"<td>"+val.description+"</td>"+"<td>"+val.publish+"</td>"+"<td>"+val.like+"</td>");
                     if(val.status=='1')
-                        _html += ("<td><button class='button'>可借</button></td>");
+                        _html += ("<td id='dd"+val.index+"'><button class='button' onclick='borrow("+val.index+")'>可借</button></td>");
                     else
-                        _html += ("<td><button class='button'>不可借</button></td></tr>");
+                        _html += ("<td><button class='button' disabled=ture>不可借</button></td></tr>");
                 });
                 $('.result-container').html(_html);
                 $('.result-container').fadeIn(100);
@@ -83,6 +114,7 @@
         }
         evt.preventDefault();
     }
+
 </script>
 
 </body>

@@ -1,11 +1,10 @@
 package com.library.dao;
 
+import com.library.pojo.BorrowHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +25,12 @@ public class BorrowHistoryDao {
     private static final String UPDATE_SB_MY_BORROWING_ETIME = "UPDATE borrow_history SET end_time=date_add(end_time,interval 1 MONTH) WHERE id = ?";
     private static final String GET_SB_BORROW_HISTORY_COUNT = "SELECT COUNT(*) `rank` from borrow_history WHERE user_account = ?";
     private static final String GET_BORROW_HISTORY_BY_ID = "SELECT * FROM borrow_history WHERE id = ?";
+    private static final String INSERT = "INSERT INTO `borrow_history`(`user_account`, `start_time`, `end_time`, `book_index`, `overtime`, `status`) VALUES (?, ?, ?, ?, 0, 0)";
     /*private static final String UPDATE_*/
+
+    public int insert(BorrowHistory borrowHistory) {
+        return jdbcTemplate.update(INSERT,new Object[]{borrowHistory.getUser_account(),borrowHistory.getStart_time(),borrowHistory.getEnd_time(),borrowHistory.getBook_index()});
+    }
 
     public  List<Map<String, Object>> getMonthReadNum(int userAccount) {
         return jdbcTemplate.queryForList(GET_MONTH_READ_NUM,new Object[]{userAccount});

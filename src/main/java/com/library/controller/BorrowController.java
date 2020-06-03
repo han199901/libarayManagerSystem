@@ -1,16 +1,20 @@
 package com.library.controller;
 
+import com.library.dao.BookDao;
 import com.library.dao.BorrowCardDao;
 import com.library.dao.BorrowHistoryDao;
 import com.library.pojo.BorrowCard;
+import com.library.pojo.BorrowHistory;
 import com.library.pojo.User;
 import com.library.sevice.BorrowCardService;
 import com.library.sevice.BorrowHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,14 +22,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 @Controller
 public class BorrowController {
     BorrowHistoryDao borrowHistoryDao;
+    BookDao bookDao;
     BorrowHistoryService borrowHistoryService;
     BorrowCardDao borrowCardDao;
     BorrowCardService borrowCardService;
+    @Autowired
+    public void setBookDao(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
+
     @Autowired
     public void setBorrowHistoryService(BorrowHistoryService borrowHistoryService) {
         this.borrowHistoryService = borrowHistoryService;
@@ -38,6 +48,33 @@ public class BorrowController {
     public void setBorrowCardDao(BorrowCardDao borrowCardDao) { this.borrowCardDao = borrowCardDao; }
     @Autowired
     public void setBorrowCardService(BorrowCardService borrowCardService) { this.borrowCardService = borrowCardService; }
+
+    @RequestMapping("/user/borrowbook")
+    @ResponseBody
+    public Map<String, String> borrowBook(@RequestBody BorrowHistory borrowHistory) {
+        Map<String,String> result = new HashMap<>();
+        SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");//设置时间格式
+        Date date = new Date();
+        String strDate = format.format(date);
+        try {
+            borrowHistory.setStart_time(format.parse(strDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        calendar.add(calendar.DATE,30);
+        strDate = format.format(calendar.getTime());
+        try {
+            borrowHistory.setEnd_time(format.parse(strDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(borrowHistory.getBook_index());
+        bookDao.updateStatusFalse(borrowHistory.getBook_index());
+        result.put("result",String.valueOf(borrowHistoryDao.insert(borrowHistory)));
+        return result;
+    }
 
     @RequestMapping("/user/borrowhistory")
     public ModelAndView borrowhistory(HttpServletRequest request) {
