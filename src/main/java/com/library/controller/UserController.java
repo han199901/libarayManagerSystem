@@ -1,9 +1,14 @@
 package com.library.controller;
 
+<<<<<<< HEAD
 import com.library.dao.AnnouncementDao;
 import com.library.pojo.User;
 import com.library.sevice.BookSevice;
 import com.library.sevice.CreditService;
+=======
+import com.library.pojo.User;
+import com.library.sevice.BorrowHistoryService;
+>>>>>>> chadaye
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +23,11 @@ public class UserController {
     CreditService creditService;
     BookSevice booksevice;
     AnnouncementDao announcementDao;
+	BorrowHistoryService borrowHistoryService;
+    @Autowired
+    public void setBorrowHistoryService(BorrowHistoryService borrowHistoryService) {
+        this.borrowHistoryService = borrowHistoryService;
+    }
     @Autowired
     public void setAnnouncementDao(AnnouncementDao announcementDao) {
         this.announcementDao = announcementDao;
@@ -42,6 +52,7 @@ public class UserController {
         /*假设已经登录*/
         ModelAndView view = new ModelAndView("/user/home");
         view.addObject("notice",announcementDao.getAnnouncement());
+		view.addObject("rank",borrowHistoryService.rank(user));
         return view;
     }
     @RequestMapping("/user/leaderboard")

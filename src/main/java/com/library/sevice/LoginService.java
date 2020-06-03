@@ -50,7 +50,6 @@ public class LoginService {
     }
 
     private int log(LoginInfo loginInfo) {
-        System.out.println(loginInfo);
         return loginInfoDao.insert(loginInfo.getUser_account(),loginInfo.getAddress().get("query"),loginInfo.getTime(),loginInfo.getSimpleAddress());
     }
 
