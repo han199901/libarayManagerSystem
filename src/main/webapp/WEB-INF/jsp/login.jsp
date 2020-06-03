@@ -168,7 +168,7 @@
                             if (result.code == 1) {
                                 location.href = "user/home";
                             } else {
-                                $("#err_m").html("<p style=\"color:red\">用户名或密码错误</p>");
+                                $("#err_m").html("<p style=\"color:#ff0000\">用户名或密码错误</p>");
                             }
                         },
                         error: function () {

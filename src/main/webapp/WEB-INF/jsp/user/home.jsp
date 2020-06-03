@@ -260,11 +260,11 @@
                         <li class="g_heading">主要</li>
                         <li class="left-li active"><a class="J_menuItem" href="/user/dashboard"><i class="fa fa-dashboard"></i><span>仪表盘</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/user/search"><i class="fa fa-black-tie"></i><span>图书查询</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="/user/borrowhistory"><i class="fa fa-user-circle-o"></i><span>我的借阅</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/user/myborrowing"><i class="fa fa-user-circle-o"></i><span>我的借阅</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-users"></i><span>我的信用</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-users"></i><span>我的借阅证</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/user/borrowcard"><i class="fa fa-users"></i><span>我的借阅证</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-graduation-cap"></i><span>我的愿望</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-book"></i><span>历史借阅</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/user/borrowhistory"><i class="fa fa-book"></i><span>历史借阅</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-bullhorn"></i><span>账号管理</span></a></li>
                         <li class="g_heading">其他</li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-calendar"></i><span>热门图书</span></a></li>
@@ -314,7 +314,8 @@
                                 <a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
                                     <span class="avatar" style="background-image: url(../assets/images/xs/avatar5.jpg)"></span> George</a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-user"></i> 个人信息</a>
+                                    <div class="dropdown-item"><i class="dropdown-icon fe fe-user"></i>${rank.rank}</div>
+                                    <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-user"></i>个人信息</a>
                                     <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-settings"></i>修改密码</a>
                                     <a class="dropdown-item" href="/blank"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="dropdown-icon fa fa-bell"></i>系统消息</a>
                                     <div class="dropdown-divider"></div>

@@ -24,8 +24,8 @@
             <td style="width: 200px;">书名</td>
             <td style="width: 200px;">借阅时间</td>
             <td style="width: 200px;">归还时间</td>
-            <td style="width: 200px;">是否归还</td>
             <td style="width: 200px;">是否超时</td>
+            <td style="width: 200px;">超时时间</td>
         </tr>
         </thead>
         <tbody>
@@ -35,8 +35,8 @@
                 <td>${b.name} </td>
                 <td>${b.start_time}</td>
                 <td>${b.end_time}</td>
-                <td>${b.overtime}</td>
                 <td>${b.statusname}</td>
+                <td>${b.days}</td>
             </tr>
         </c:forEach>
         </tbody>
