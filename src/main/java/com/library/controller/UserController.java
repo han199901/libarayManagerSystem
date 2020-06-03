@@ -1,14 +1,10 @@
 package com.library.controller;
 
-<<<<<<< HEAD
 import com.library.dao.AnnouncementDao;
 import com.library.pojo.User;
 import com.library.sevice.BookSevice;
 import com.library.sevice.CreditService;
-=======
-import com.library.pojo.User;
 import com.library.sevice.BorrowHistoryService;
->>>>>>> chadaye
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
