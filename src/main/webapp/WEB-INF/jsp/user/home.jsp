@@ -302,7 +302,7 @@
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-book"></i><span>历史借阅</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/user/userMessage"><i class="fa fa-bullhorn"></i><span>账号管理</span></a></li>
                         <li class="g_heading">其他</li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i class="fa fa-calendar"></i><span>热门图书</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/user/leaderboard"><i class="fa fa-calendar"></i><span>热门图书</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/user/calendar"><i class="fa fa-comments-o"></i><span>日程安排</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/user/readingroom"><i class="fa fa-address-book"></i><span>借阅室</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/user/faq"><i class="fa fa-folder"></i><span>FAQ</span></a></li>

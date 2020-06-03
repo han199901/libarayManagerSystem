@@ -1,6 +1,7 @@
 package com.library.controller;
 
 import com.library.pojo.User;
+import com.library.sevice.BookSevice;
 import com.library.sevice.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,11 @@ import javax.servlet.http.HttpSession;
 public class UserController {
 
     CreditService creditService;
+    BookSevice booksevice;
+    @Autowired
+    public void setBooksevice(BookSevice booksevice) {
+        this.booksevice = booksevice;
+    }
     @Autowired
     public void setCreditService(CreditService creditService) {
         this.creditService = creditService;
@@ -31,8 +37,14 @@ public class UserController {
 
         return new ModelAndView("/user/home");
     }
+    @RequestMapping("/user/leaderboard")
+    public ModelAndView leaderboard() {
+        ModelAndView view = new ModelAndView("user/leaderboard");
+        view.addObject("likeList",booksevice.getMostLike());
+        return view;
+    }
     @RequestMapping("/user/faq")
-    public ModelAndView faq() { return new ModelAndView("/user/faq");}
+    public ModelAndView faq() { return new ModelAndView("user/faq");}
     @RequestMapping("/blank")
     public ModelAndView blank () {
         return new ModelAndView("blank");

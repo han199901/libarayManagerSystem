@@ -1,4 +1,22 @@
 package com.library.sevice;
 
-public class Booksevice {
+import com.library.dao.BookDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class BookSevice {
+    BookDao bookDao;
+    @Autowired
+    public void setBookDao(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
+
+    public List<Map<String, Object>> getMostLike() {
+        return bookDao.getPopularBook();
+    }
+
 }
