@@ -1,5 +1,6 @@
 package com.library.controller;
 
+import com.library.dao.AnnouncementDao;
 import com.library.pojo.User;
 import com.library.sevice.BookSevice;
 import com.library.sevice.CreditService;
@@ -16,6 +17,11 @@ public class UserController {
 
     CreditService creditService;
     BookSevice booksevice;
+    AnnouncementDao announcementDao;
+    @Autowired
+    public void setAnnouncementDao(AnnouncementDao announcementDao) {
+        this.announcementDao = announcementDao;
+    }
     @Autowired
     public void setBooksevice(BookSevice booksevice) {
         this.booksevice = booksevice;
@@ -34,8 +40,9 @@ public class UserController {
         session.setAttribute("credit",creditService.creditDaoData((User) session.getAttribute("user")).get("credit"));
         User user = (User) session.getAttribute("user");
         /*假设已经登录*/
-
-        return new ModelAndView("/user/home");
+        ModelAndView view = new ModelAndView("/user/home");
+        view.addObject("notice",announcementDao.getAnnouncement());
+        return view;
     }
     @RequestMapping("/user/leaderboard")
     public ModelAndView leaderboard() {
