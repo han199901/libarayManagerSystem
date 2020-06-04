@@ -414,7 +414,12 @@
                                     <span class="avatar"
                                           style="background-image: url(../assets/images/xs/avatar5.jpg)"></span> George</a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    信誉等级：Lv.${credit}
+                                    <c:if test="${credit!=-1}">
+                                      信誉等级：Lv.${credit}
+                                    </c:if>
+                                    <c:if test="${credit==-1}">
+                                        信誉等级：无借阅卡
+                                    </c:if>
 									<div class="dropdown-item"><i class="dropdown-icon fe fe-user"></i>${rank.rank}</div>
                                     <a class="dropdown-item" onclick="dianwo()"><i class="dropdown-icon fe fe-user"></i>
                                         个人信息</a>
