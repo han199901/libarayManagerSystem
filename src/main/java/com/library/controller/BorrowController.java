@@ -22,7 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.*;
+
 
 @Controller
 public class BorrowController {
@@ -103,6 +105,12 @@ public class BorrowController {
         User user = new User();
         user.setUser_account(1001);
         ModelAndView view = new ModelAndView("/user/myborrowing");
+        int flag = 0;
+        int result = borrowCardService.borrowCardIDData(user);
+        if(result == 0) {
+            flag = 1;
+            view.addObject("flag", flag);
+        }
         view.addObject("myborrowing",borrowHistoryService.myBorrowingData(user));
         return view;
     }
@@ -130,26 +138,59 @@ public class BorrowController {
         User user = new User();
         user.setUser_account(1001);
         ModelAndView view = new ModelAndView("/user/borrowcard");
-        view.addObject("borrowCard",borrowCardService.borrowCardData(user));
-        view.addObject("status",borrowCardService.borrowCardIDData(user));
-        view.addObject("user_account",user.getUser_account());
+        List<Map<String, Object>> list =  borrowCardService.borrowCardData(user);
+        view.addObject("borrowCard",list);
+        if(!list.isEmpty()) {
+            int result = borrowCardService.borrowCardIDData(user);
+            if(result != -1) {
+                if(result == 1) {
+                    view.addObject("flag", 2);
+                } else {
+                    view.addObject("flag", 1);
+                }
+                view.addObject("status", borrowCardService.borrowCardIDData(user));
+                view.addObject("user_account", user.getUser_account());
+            } else {
+                view.addObject("flag", 0);
+            }
+        }
         return view;
     }
 
-    @RequestMapping("/user/borrowcard.b1reg")
-    public void status1register(@RequestParam int user_account,HttpServletRequest request, HttpServletResponse response) throws IOException {
-        borrowCardDao.updatestatus(2,user_account,1);
-        borrowCardDao.insert(user_account);
+    @RequestMapping("/user/borrowcard.del")
+    public void deleteBorrowCard(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        /*从session处获取user_account的值*/
+        /*HttpSession session = request.getSession();
+        session.getAttribute("user_account");
+        int user_account=(int)session.getAttribute("user_account");*/
+
+        /*设置登陆用户账号为1001*/
+        User user = new User();
+        user.setUser_account(1001);
+        borrowCardService.deleteBorrowCard(user);
         response.sendRedirect("/user/borrowcard");
     }
     @RequestMapping("/user/borrowcard.b2reg")
-    public void status2register(@RequestParam int user_account,HttpServletRequest request, HttpServletResponse response) throws IOException {
-        borrowCardDao.insert(user_account);
+    public void status2register(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        /*从session处获取user_account的值*/
+        /*HttpSession session = request.getSession();
+        session.getAttribute("user_account");
+        int user_account=(int)session.getAttribute("user_account");*/
+
+        /*设置登陆用户账号为1001*/
+        User user = new User();
+        user.setUser_account(1001);
+        borrowCardDao.insert(user.getUser_account());
         response.sendRedirect("/user/borrowcard");
     }
     @RequestMapping("/user/borrowcard.b0rpl")
     public void status0reportloss(@RequestParam int user_account,HttpServletRequest request, HttpServletResponse response) throws IOException {
         borrowCardDao.updatestatus(1,user_account,0);
+        response.sendRedirect("/user/borrowcard");
+    }
+    @RequestMapping("/user/borrowcard.cancel")
+    public void cancel(@RequestParam int user_account,HttpServletRequest request, HttpServletResponse response) throws IOException {
+        borrowCardDao.updatestatus(0,user_account,1);
         response.sendRedirect("/user/borrowcard");
     }
 }

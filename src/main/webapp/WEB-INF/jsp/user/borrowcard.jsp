@@ -15,28 +15,22 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/faqscript.js"></script>
 
+    <link rel="stylesheet" href="../lib/zyclib/layui.css" media="all">
+    <link rel="stylesheet" href="../lib/zyclib/admin.css" media="all">
+
 </head>
 <body>
 <div >
     <script type="text/javascript">
-        function reg(uid,bstatus){
-            if(bstatus == 0) {
-                /*已拥有借阅卡不可注册*/
-                alert("您已拥有借阅卡，请勿重复申请！");
-            }
-            else if (bstatus == 1) {
-                /*使bstatus=1并注册*/
-                alert("您的借阅卡注销成功，已为您再次申请！");
-                location.href="borrowcard.b1reg?user_account="+uid;
-
-            }
-            else {
-                /*bstatus=2或null时，直接注册*/
-                alert("已为您申请借阅卡！");
-                location.href="borrowcard.b2reg?user_account="+uid;
-            }
+        function reg(){
+            location.href="borrowcard.b2reg";
         }
-
+        function del(bstatus){
+            location.href="borrowcard.del";
+        }
+        function cancel(user_account){
+            location.href="borrowcard.cancel?user_account="+user_account;
+        }
         function rpl(uid,bstatus){
             if(bstatus == 0) {
                 /*使status=1 挂失成功*/
@@ -46,44 +40,56 @@
             else if(bstatus == 1) {
                 alert("您的借阅卡已挂失，请勿重复挂失！");
             }
-            else if(bstatus == 2){
-                alert("您的借阅卡已注销，无法挂失！");
-            }
-            else{
-                alert("您还没有申请借阅卡！");
-            }
         }
     </script>
-    <table >
-        <thead>
-        <tr>
-            <td style="width: 200px;">借阅号</td>
-            <td style="width: 200px;">姓名</td>
-            <td style="width: 200px;">开卡时间</td>
-            <td style="width: 200px;">过期时间</td>
-            <td style="width: 200px;">是否挂失</td>
-            <td style="width: 200px;">信誉值</td>
-        </tr>
-        </thead>
-        <tbody>
 
-        <c:forEach items="${borrowCard}" var="b">
+    <div class="layui-card-body">
+        <table class="layui-table layui-form">
+            <thead>
             <tr>
-                <td>${b.bid} </td>
-                <td>${b.uname}</td>
-                <td>${b.start_time}</td>
-                <td>${b.end_time}</td>
-                <td>${b.bstatusname}</td>
-                <td>${b.credit}</td>
+                <th>借阅号</th>
+                <th>姓名</th>
+                <th>开卡时间</th>
+                <th>过期时间</th>
+                <th>是否挂失</th>
+                <th>信誉值</th>
             </tr>
-        </c:forEach>
-        </tbody>
-        <tr>
-            <a href="javascript:reg('${user_account}','${status}');">注册</a>
-            <a href="javascript:rpl('${user_account}','${status}');">挂失</a>
-        </tr>
-    </table>
+            </thead>
+            <tbody>
+            <c:forEach items="${borrowCard}" var="b">
+                <tr>
+                    <td>${b.bid} </td>
+                    <td>${b.uname}</td>
+                    <td>${b.start_time}</td>
+                    <td>${b.end_time}</td>
+                    <td>${b.bstatusname}</td>
+                    <td>${b.credit}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+            <tbody>
+            <c:if test="${flag==1}">
+                <a class="layui-btn layui-btn-sm layui-btn-warm copy" title="挂失" href="javascript:rpl('${user_account}','${status}');">挂失</a>
+                <a class="layui-btn layui-btn-sm layui-btn-danger" title="注销" href="javascript:del('${status}');">注销</a>
+            </c:if>
+            <c:if test="${flag==0}">
+                <a class="layui-btn layui-btn-sm layui-btn-normal"  title="注册" href="javascript:reg();">注册</a>
+            </c:if>
+            <c:if test="${flag==2}">
+                <a class="layui-btn layui-btn-sm layui-btn-warm copy" title="取消挂失" href="javascript:cancel('${user_account}','${status}');">取消挂失</a>
+                <a class="layui-btn layui-btn-sm layui-btn-danger" title="注销" href="javascript:del('${status}');">注销</a>
+            </c:if>
+            </tbody>
+
+
+        </table>
+    </div>
+
+
 </div>
 
 </body>
 </html>
+<script src="../lib/zyclib/jquery-3.4.1.min.js"></script>
+<script src="../lib/zyclib/layui.js"></script>
+<script src="../lib/zyclib/admin.js"></script>

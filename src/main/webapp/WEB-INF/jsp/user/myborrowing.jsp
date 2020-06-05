@@ -8,6 +8,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" href="../plugins/dropify/css/dropify.min.css">
+<link rel="stylesheet" href="../plugins/summernote/dist/summernote.css"/>
+<link rel="stylesheet" href="../plugins/sweetalert/sweetalert.css">
+
+<!-- Core css -->
+<link rel="stylesheet" href="../css/style.min.css"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,30 +38,41 @@
     }
 </script>
 <div >
-    <table >
-        <thead>
-        <tr>
-            <td style="width: 200px;">书名</td>
-            <td style="width: 200px;">借阅时间</td>
-            <td style="width: 200px;">归还时间</td>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="tab-pane active" id="Student-all">
 
-        <c:forEach items="${myborrowing}" var="b">
-            <tr>
-                <td>${b.name} </td>
-                <td>${b.start_time}</td>
-                <td>${b.end_time}</td>
-                <td>
-                    <a href="javascript:del('${b.id}');">归还</a>
-                    <a href="javascript:update('${b.id}');">续期</a>
-                    <%--<a href="javascript:location.href='index?cmd=query&id=${r.sid}'">详情</a>--%>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+        <div class="table-responsive card">
+            <table class="table table-hover table-vcenter table-striped mb-0 text-nowrap">
+                <thead>
+                <tr>
+                    <th>书名</th>
+                    <th></th>
+                    <th>借阅时间</th>
+                    <th>归还时间</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${myborrowing}" var="b">
+                <tr>
+                    <td class="w60">
+                        <img class="avatar" src="../assets/images/xs/avatar1.jpg" alt="">
+                    </td>
+                    <td><span class="font-16">${b.name}</span></td>
+                    <td>${b.start_time}</td>
+                    <td>${b.end_time}</td>
+                    <c:if test="${flag == 1}">
+                    <td>
+
+                        <button type="button" class="btn btn-icon btn-sm" title="Renew" onclick="javascript:update('${b.id}');" value="续期"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="btn btn-icon btn-sm" title="ReturnBook" onclick="javascript:del('${b.id}');" value="归还"><i class="fa fa-circle-thin"> 归还</i></button>
+                    </td>
+                    </c:if>
+                </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>
