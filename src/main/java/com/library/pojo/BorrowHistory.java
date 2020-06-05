@@ -1,6 +1,6 @@
 package com.library.pojo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BorrowHistory {
     private int id;

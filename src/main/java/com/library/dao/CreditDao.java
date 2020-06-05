@@ -12,7 +12,7 @@ public class CreditDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private static final String GET_USER_CREDIT = "SELECT credit from borrow_card WHERE user_account = ?";
+    private static final String GET_USER_CREDIT = "SELECT credit from borrow_card WHERE user_account = ? and status = 0";
     public int getCredit(int userAccount) {
         return jdbcTemplate.queryForObject(GET_USER_CREDIT,new Object[]{userAccount},Integer.class);
     }
