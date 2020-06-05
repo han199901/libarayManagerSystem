@@ -17,6 +17,7 @@ public class BookDao {
 
     private static final String GET_BY_NAME = "SELECT * FROM books WHERE name like concat('%',?,'%')";
     private static final String GET_POPULAR_BOOK = "SELECT * FROM books ORDER BY `like` LIMIT 8";
+    private static final String UPDATE_STATUS_FALSE = "UPDATE `books` SET `status` = 0 WHERE `index` = ?";
 
     public List<Map<String, Object>> getByName(String name) {
         return jdbcTemplate.queryForList(GET_BY_NAME,name);
@@ -26,4 +27,7 @@ public class BookDao {
         return jdbcTemplate.queryForList(GET_POPULAR_BOOK);
     }
 
+    public int updateStatusFalse(int index) {
+        return jdbcTemplate.update(UPDATE_STATUS_FALSE,index);
+    }
 }

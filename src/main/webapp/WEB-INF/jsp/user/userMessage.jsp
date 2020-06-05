@@ -101,10 +101,6 @@
     </thead>
     <c:forEach items="${userMessage}" var="num">
         <tr>
-            <td>您的编号</td>
-            <td>${num.id}</td>
-        </tr>
-        <tr>
             <td>您的账户</td>
             <td>${num.user_account}</td>
         </tr>
