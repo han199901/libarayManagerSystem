@@ -423,7 +423,7 @@
 									<div class="dropdown-item"><i class="dropdown-icon fe fe-user"></i>${rank.rank}</div>
                                     <a class="dropdown-item" onclick="dianwo()"><i class="dropdown-icon fe fe-user"></i>
                                         个人信息</a>
-                                    <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-settings"></i>修改密码</a>
+                                    <a class="dropdown-item" onclick="dianwo()"><i class="dropdown-icon fe fe-settings"></i>修改信息</a>
                                     <a class="dropdown-item" href="/blank"><span class="float-right"><span
                                             class="badge badge-primary">6</span></span><i
                                             class="dropdown-icon fa fa-bell"></i>系统消息</a>
@@ -497,6 +497,7 @@
     function hidder() {
         document.getElementById('zhezhao').style.display = "none";
     }
+
 </script>
 </body>
 </html>

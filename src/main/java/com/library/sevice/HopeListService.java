@@ -1,7 +1,7 @@
 package com.library.sevice;
 
 import com.library.dao.HopeListDao;
-import com.library.dao.UserMessageDao;
+import com.library.pojo.HopeList;
 import com.library.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,8 @@ public class HopeListService {
 
     public Map<String,Object> hopeListData(User user) {
         HashMap<String,Object> result = new HashMap<>();
-        result.put("hopeList",hopeListDao.getHopList(user.getUser_account()));
+        result.put("hopeList",hopeListDao.getHopeList(user.getUser_account()));
         return result;
     }
+
 }
