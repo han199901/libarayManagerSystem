@@ -1,9 +1,9 @@
 package com.library.pojo;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-public class HopeList implements Serializable {
+public class HopeList{
     private int  id;
     private String name;
     private String publish;
@@ -12,6 +12,19 @@ public class HopeList implements Serializable {
     private Date time;
     private String advice;
     private int status;
+
+    public HopeList() {
+    }
+
+    public HopeList(String name, String publish, int user_account, String user_name, Date time, String advice, int status) {
+        this.name = name;
+        this.publish = publish;
+        this.user_account = user_account;
+        this.user_name = user_name;
+        this.time = time;
+        this.advice = advice;
+        this.status = status;
+    }
 
     public int getId() {
         return id;

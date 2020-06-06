@@ -10,6 +10,40 @@
 <html>
 <head>
     <title>Title</title>
+    <style type="text/css">
+
+        .zhezhao{
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            background: #000;
+            width: 100%;
+            height: 100%;
+            opacity: 0.9;
+        }
+        .tankuang{
+            position: relative;
+            background: #fff;
+            width: 50%;
+            height: 80%;
+            border-radius: 5px;
+            margin: 5% auto;
+        }
+        #header{
+            height: 40px;
+        }
+        #header-right{
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            background: red;
+            color: #fff;
+            right: 5px;
+            top: 5px;
+            text-align: center;
+        }
+    </style>
     <style>
 
         body {
@@ -85,8 +119,40 @@
             -webkit-border-radius: 0 0 6px 6px;
             border-radius: 0 0 6px 6px
         }
-
     </style>
+    <link href="../css/style1.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../js/jquery1.min.js"></script>
+    <script type="text/javascript" src="../js/register.js"></script>
+    <script type="text/javascript">
+        function UserUDOnClicked() {
+            var user = {};
+            user['password'] = $("input[name='password']").val();
+            user['name'] = $("input[name='name']").val();
+            user['phone_number'] = $("input[name='phone_number']").val();
+            user['user_account'] = ${sessionScope.user.user_account};
+            user['email'] = $("input[name='email']").val();
+            user['description'] = $("input[name='description']").val();
+            $.ajax({
+                type: "POST",
+                url: "/user/userMessage/ud",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(user),
+                success: function (data) {
+                    if (data.code==1){
+                        alert('恭喜你！修改成功');
+                        location.reload();
+                    } else {
+                        alert('必须输入用户名和密码，其他项可选填！');
+                    }
+                },
+                error: function (data) {
+                    console.log("修改失败");
+                    console.log(data);
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <h2>个人信息</h2>
@@ -123,9 +189,38 @@
     </c:forEach>
     <tr>
         <td></td>
-        <td><button>修改</button></td>
+        <td><button type="button" onclick="dianwo()">修改</button></td>
+        <div class="zhezhao" id='zhezhao'>
+            <div class="tankuang">
+                <div id="header">
+                    <span>修改信息</span>
+                    <div id="header-right" onclick="hidder()">x</div>
+                </div>
+                <div>
+                    <div class="aui-register-form-item">
+                        <input type="text" name="password" placeholder="密码" class="txt01 f-r3 required" >
+                        <input type="text" name="name" placeholder="用户名" class="txt01 f-r3 required" >
+                        <input type="text" name="phone_number" placeholder="手机号" class="txt03 f-r3 required" >
+                        <label class="focus valid"></label>
+                        <input type="text" name="email" placeholder="邮箱" class="txt03 f-r3 required" >
+                        <input type="text" name="description" placeholder="个人简介">
+                        <label class="focus valid"></label>
+                        <input id="a" type="button" value="保存" onclick="UserUDOnClicked()"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </tr>
 </table>
-
+<script type="text/javascript">
+    document.getElementById('zhezhao').style.display="none";
+    function dianwo(){
+        document.getElementById('zhezhao').style.display="";
+    }
+    function hidder(){
+        document.getElementById('zhezhao').style.display="none";
+    }
+</script>
 </body>
 </html>

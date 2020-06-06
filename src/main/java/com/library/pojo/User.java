@@ -15,6 +15,17 @@ public class User implements Serializable {
     private int status;
     private Date register_time;
 
+    public User() {
+    }
+
+    public User(String password, String name, int phone_number, String email, String description) {
+        this.password = password;
+        this.name = name;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.description = description;
+    }
+
     public int getUser_account() {
         return user_account;
     }
