@@ -18,8 +18,7 @@ public class BorrowCardService {
     public void setBorrowCardDao(BorrowCardDao borrowCardDao) { this.borrowCardDao = borrowCardDao; }
 
     public List<Map<String, Object>> borrowCardData(User user) {
-        List<Map<String, Object>> result = new ArrayList<>();
-        result =  borrowCardDao.getborrowcardinfo(user.getUser_account());
+        List<Map<String, Object>> result = borrowCardDao.getborrowcardinfo(user.getUser_account());
         for (Map<String, Object> i :result) {
             int a = (int) i.get("bstatus");
             if(a == 0) {
