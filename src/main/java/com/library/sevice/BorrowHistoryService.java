@@ -83,8 +83,7 @@ public class BorrowHistoryService {
     public void returnbook(int id) {
         List<Map<String, Object>> result = borrowHistoryDao.getBorrowHistoryById(id);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date date1 = new Date();
-        Date now = date1;
+        Date now = new Date();
         for (Map<String, Object> i :result) {
             Date date2 = (Date) i.get("end_time");
             System.out.println(date2);
@@ -105,6 +104,7 @@ public class BorrowHistoryService {
             }
             borrowCardDao.updateborrowcardcredit(credit,d);
             borrowHistoryDao.updateOvertime(id,a);
+            /*borrowHistoryDao.updateendtime(id);*/
         }
         borrowHistoryDao.delete(id);
     }

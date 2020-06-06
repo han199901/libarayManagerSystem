@@ -26,6 +26,7 @@ public class BorrowHistoryDao {
     private static final String GET_SB_BORROW_HISTORY_COUNT = "SELECT COUNT(*) `rank` from borrow_history WHERE user_account = ?";
     private static final String GET_BORROW_HISTORY_BY_ID = "SELECT * FROM borrow_history WHERE id = ?";
     private static final String INSERT = "INSERT INTO `borrow_history`(`user_account`, `start_time`, `end_time`, `book_index`, `overtime`, `status`) VALUES (?, ?, ?, ?, 0, 0)";
+    private static final String UPDATE_BORROW_HISTORY_ENDTIME = "UPDATE borrow_history SET end_time = NOW() WHERE id = ?";
     /*private static final String UPDATE_*/
 
     public int insert(BorrowHistory borrowHistory) {
@@ -58,6 +59,9 @@ public class BorrowHistoryDao {
 
     public int  rank(int id) {
         return jdbcTemplate.queryForObject(GET_SB_BORROW_HISTORY_COUNT,new Object[]{id},Integer.class);
+    }
+    public int  updateendtime(int id) {
+        return jdbcTemplate.queryForObject(UPDATE_BORROW_HISTORY_ENDTIME,new Object[]{id},Integer.class);
     }
     public  List<Map<String, Object>> getBorrowHistoryById(int id) {
         return jdbcTemplate.queryForList(GET_BORROW_HISTORY_BY_ID,new Object[]{id});

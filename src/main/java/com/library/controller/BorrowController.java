@@ -88,7 +88,7 @@ public class BorrowController {
 
         /*设置登陆用户账号为1001*/
         User user = new User();
-        user.setUser_account(1001);
+        user.setUser_account(123);
         ModelAndView view = new ModelAndView("/user/borrowhistory");
         view.addObject("borrowHistory",borrowHistoryService.borrowHistoryData(user));
         return view;
@@ -103,7 +103,7 @@ public class BorrowController {
 
         /*设置登陆用户账号为1002*/
         User user = new User();
-        user.setUser_account(1001);
+        user.setUser_account(123);
         ModelAndView view = new ModelAndView("/user/myborrowing");
         int flag = 0;
         int result = borrowCardService.borrowCardIDData(user);
@@ -136,24 +136,24 @@ public class BorrowController {
 
         /*设置登陆用户账号为1001*/
         User user = new User();
-        user.setUser_account(1001);
+        user.setUser_account(123);
         ModelAndView view = new ModelAndView("/user/borrowcard");
         List<Map<String, Object>> list =  borrowCardService.borrowCardData(user);
         view.addObject("borrowCard",list);
+        int flag=0;
         if(!list.isEmpty()) {
             int result = borrowCardService.borrowCardIDData(user);
             if(result != -1) {
                 if(result == 1) {
-                    view.addObject("flag", 2);
+                    flag = 2;
                 } else {
-                    view.addObject("flag", 1);
+                    flag = 1;
                 }
                 view.addObject("status", borrowCardService.borrowCardIDData(user));
                 view.addObject("user_account", user.getUser_account());
-            } else {
-                view.addObject("flag", 0);
             }
         }
+        view.addObject("flag", flag);
         return view;
     }
 
@@ -166,7 +166,7 @@ public class BorrowController {
 
         /*设置登陆用户账号为1001*/
         User user = new User();
-        user.setUser_account(1001);
+        user.setUser_account(123);
         borrowCardService.deleteBorrowCard(user);
         response.sendRedirect("/user/borrowcard");
     }
@@ -179,7 +179,7 @@ public class BorrowController {
 
         /*设置登陆用户账号为1001*/
         User user = new User();
-        user.setUser_account(1001);
+        user.setUser_account(123);
         borrowCardDao.insert(user.getUser_account());
         response.sendRedirect("/user/borrowcard");
     }
