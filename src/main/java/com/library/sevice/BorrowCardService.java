@@ -33,6 +33,10 @@ public class BorrowCardService {
         return result;
     }
     public int borrowCardIDData(User user) {
-        return borrowCardDao.getborrowcardus(user.getUser_account());
+        int result = borrowCardDao.getborrowcardus(user.getUser_account());
+        return result;
+    }
+    public void deleteBorrowCard(User user) {
+        borrowCardDao.logout(user.getUser_account());
     }
 }

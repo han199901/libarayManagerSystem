@@ -1,5 +1,6 @@
 package com.library.sevice;
 
+import com.library.dao.BorrowCardDao;
 import com.library.dao.BorrowHistoryDao;
 import com.library.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,12 @@ import java.util.*;
 @Service
 public class BorrowHistoryService {
     BorrowHistoryDao borrowHistoryDao;
+    BorrowCardDao borrowCardDao;
+
+    @Autowired
+    public void setBorrowCardDao(BorrowCardDao borrowCardDao) {
+        this.borrowCardDao = borrowCardDao;
+    }
 
     @Autowired
     public void setBorrowHistoryDao(BorrowHistoryDao borrowHistoryDao) {
@@ -57,7 +64,7 @@ public class BorrowHistoryService {
         if(a <= 4) {
             rank.put("rank","英勇黄铜");
         } else if(a > 4 && a <= 8){
-                rank.put("rank","不屈白银");
+            rank.put("rank","不屈白银");
         } else if(a > 8 && a <= 12){
             rank.put("rank","荣耀黄金");
         } else if(a > 12 && a <= 16){
@@ -74,18 +81,30 @@ public class BorrowHistoryService {
         return rank;
     }
     public void returnbook(int id) {
-        List<Map<String, Object>> result = new ArrayList<>();
-        result =  borrowHistoryDao.getBorrowHistoryById(id);
+        List<Map<String, Object>> result = borrowHistoryDao.getBorrowHistoryById(id);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date date1 = new Date();
         Date now = date1;
         for (Map<String, Object> i :result) {
             Date date2 = (Date) i.get("end_time");
+            System.out.println(date2);
+
+            int d = (int) i.get("user_account");
+            int credit  = borrowCardDao.getborrowcardcredit(d);
+
+            int a;
             if(date2.compareTo(now) < 0) {
                 long day = (now.getTime() - date2.getTime()) / (24 * 60 * 60 * 1000);
-                int a = (int) day;
-                borrowHistoryDao.updateOvertime(id,a);
+                a = (int) day;
+                credit = credit-a/10;
+            } else {
+                a=0;
+                if(credit < 50) {
+                    credit = credit+1;
+                }
             }
+            borrowCardDao.updateborrowcardcredit(credit,d);
+            borrowHistoryDao.updateOvertime(id,a);
         }
         borrowHistoryDao.delete(id);
     }

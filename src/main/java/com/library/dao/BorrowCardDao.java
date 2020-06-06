@@ -18,11 +18,34 @@ public class BorrowCardDao {
     private static final String IST_BORROW_CARD = "INSERT INTO borrow_card (`index`, `user_account`, `start_time`, `end_time`, `status`, `credit`) VALUES (?,?,?,?,0,50)";
     private static final String UD_BORROW_CARD_STS = "UPDATE borrow_card SET status = ? WHERE user_account = ? AND status = ?";
     private static final String GET_BORROW_CARD_US = "SELECT status from borrow_card WHERE user_account = ? and (`status` = 1 or `status` = 0)";
+    private static final String GET_BORROW_CARD_BY_USERACCOUNT = "SELECT * FROM borrow_card WHERE user_account = ?";
+    private static final String DEL_BORROW_CARD = "UPDATE borrow_card SET status = 2 WHERE user_account = ? ";
+    private static final String UPDATE_BORROW_CARD_CREDIT = "UPDATE borrow_card SET credit = ? WHERE user_account = ? and `status` = 0";
+    private static final String GET_BORROW_CARD_CREDIT = "SELECT credit FROM borrow_card WHERE user_account = ? AND `status` = 0";
     public List<Map<String, Object>> getborrowcardinfo(int userAccount) {
         return jdbcTemplate.queryForList(GET_BORROW_CARD,new Object[]{userAccount});
     }
+    public  List<Map<String, Object>> getBorrowCardByUserAccount(int userAccount) {
+        return jdbcTemplate.queryForList(GET_BORROW_CARD_BY_USERACCOUNT,new Object[]{userAccount});
+    }
     public int getborrowcardus(int userAccount) {
-        return jdbcTemplate.queryForObject(GET_BORROW_CARD_US,new Object[]{userAccount}, Integer.class);
+        List<Map<String, Object>> list = jdbcTemplate.queryForList(GET_BORROW_CARD_US,new Object[]{userAccount});
+        if(!list.isEmpty()) {
+            return jdbcTemplate.queryForObject(GET_BORROW_CARD_US, new Object[]{userAccount}, Integer.class);
+        } else {
+            return -1;
+        }
+    }
+    public int getborrowcardcredit(int userAccount) {
+        List<Map<String, Object>> list = jdbcTemplate.queryForList(GET_BORROW_CARD_CREDIT,new Object[]{userAccount});
+        if(!list.isEmpty()) {
+            return jdbcTemplate.queryForObject(GET_BORROW_CARD_CREDIT, new Object[]{userAccount}, Integer.class);
+        } else {
+            return 55;
+        }
+    }
+    public int updateborrowcardcredit(int credit,int userAccount) {
+        return jdbcTemplate.update(UPDATE_BORROW_CARD_CREDIT,new Object[]{credit,userAccount});
     }
     public int insert(int user_account) {
         /*return jdbcTemplate.update(DEL_SB_MY_BORROWING,new Object[]{id});*/
@@ -49,6 +72,9 @@ public class BorrowCardDao {
     }
     public int updatestatus(int newstatus,int user_account,int nowstatus) {
         return jdbcTemplate.update(UD_BORROW_CARD_STS,new Object[]{newstatus,user_account,nowstatus});
+    }
+    public int logout(int user_account) {
+        return jdbcTemplate.update(DEL_BORROW_CARD,new Object[]{user_account});
     }
 }
 
