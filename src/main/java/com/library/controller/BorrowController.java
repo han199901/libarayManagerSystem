@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -81,14 +82,10 @@ public class BorrowController {
     @RequestMapping("/user/borrowhistory")
     public ModelAndView borrowhistory(HttpServletRequest request) {
 
-        /*从session处获取user_account的值*/
-        /*HttpSession session = request.getSession();
-        session.getAttribute("user_account");
-        int user_account=(int)session.getAttribute("user_account");*/
+        /*从session处获取user*/
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
-        /*设置登陆用户账号为1001*/
-        User user = new User();
-        user.setUser_account(123);
         ModelAndView view = new ModelAndView("/user/borrowhistory");
         view.addObject("borrowHistory",borrowHistoryService.borrowHistoryData(user));
         return view;
@@ -96,14 +93,10 @@ public class BorrowController {
     @RequestMapping("/user/myborrowing")
     public ModelAndView myborrowing(HttpServletRequest request) {
 
-        /*从session处获取user_account的值*/
-        /*HttpSession session = request.getSession();
-        session.getAttribute("user_account");
-        int user_account=(int)session.getAttribute("user_account");*/
+        /*从session处获取user*/
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
-        /*设置登陆用户账号为1002*/
-        User user = new User();
-        user.setUser_account(123);
         ModelAndView view = new ModelAndView("/user/myborrowing");
         int flag = 0;
         int result = borrowCardService.borrowCardIDData(user);
@@ -129,14 +122,10 @@ public class BorrowController {
     @RequestMapping("/user/borrowcard")
     public ModelAndView borrowcard(HttpServletRequest request) {
 
-        /*从session处获取user_account的值*/
-        /*HttpSession session = request.getSession();
-        session.getAttribute("user_account");
-        int user_account=(int)session.getAttribute("user_account");*/
+        /*从session处获取user*/
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
-        /*设置登陆用户账号为1001*/
-        User user = new User();
-        user.setUser_account(123);
         ModelAndView view = new ModelAndView("/user/borrowcard");
         List<Map<String, Object>> list =  borrowCardService.borrowCardData(user);
         view.addObject("borrowCard",list);
@@ -159,27 +148,19 @@ public class BorrowController {
 
     @RequestMapping("/user/borrowcard.del")
     public void deleteBorrowCard(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        /*从session处获取user_account的值*/
-        /*HttpSession session = request.getSession();
-        session.getAttribute("user_account");
-        int user_account=(int)session.getAttribute("user_account");*/
+        /*从session处获取user*/
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
-        /*设置登陆用户账号为1001*/
-        User user = new User();
-        user.setUser_account(123);
         borrowCardService.deleteBorrowCard(user);
         response.sendRedirect("/user/borrowcard");
     }
     @RequestMapping("/user/borrowcard.b2reg")
     public void status2register(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        /*从session处获取user_account的值*/
-        /*HttpSession session = request.getSession();
-        session.getAttribute("user_account");
-        int user_account=(int)session.getAttribute("user_account");*/
+        /*从session处获取user*/
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
-        /*设置登陆用户账号为1001*/
-        User user = new User();
-        user.setUser_account(123);
         borrowCardDao.insert(user.getUser_account());
         response.sendRedirect("/user/borrowcard");
     }

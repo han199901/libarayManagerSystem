@@ -30,13 +30,10 @@ public class UserMessageController {
     }
     @RequestMapping("/user/userMessage")
     public ModelAndView userMessage(HttpServletRequest request) {
+        /*从session处获取user*/
         HttpSession session = request.getSession();
-        /*假设已经登录*/
-        User tuser = new User();
-        tuser.setUser_account(123);
-        session.setAttribute("user",tuser);
         User user = (User) session.getAttribute("user");
-        /*假设已经登录*/
+
         ModelAndView view;
         if(user==null) {
             view = new ModelAndView("/login");

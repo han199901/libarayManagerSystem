@@ -38,14 +38,10 @@ public class UserController {
     }
     @RequestMapping("/user/home")
     public ModelAndView home (HttpServletRequest request) {
+        /*从session处获取user*/
         HttpSession session = request.getSession();
-        /*假设已经登录*/
-        User tuser = new User();
-        tuser.setUser_account(123);
-        session.setAttribute("user",tuser);
-        session.setAttribute("credit",creditService.creditDaoData((User) session.getAttribute("user")).get("credit"));
         User user = (User) session.getAttribute("user");
-        /*假设已经登录*/
+
         ModelAndView view = new ModelAndView("/user/home");
         view.addObject("notice",announcementDao.getAnnouncement());
 		view.addObject("rank",borrowHistoryService.rank(user));

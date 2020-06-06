@@ -53,4 +53,7 @@ public class LoginService {
         return loginInfoDao.insert(loginInfo.getUser_account(),loginInfo.getAddress().get("query"),loginInfo.getTime(),loginInfo.getSimpleAddress());
     }
 
+    public User getUser(int user_account) {
+        return userDao.getUser(user_account);
+    }
 }

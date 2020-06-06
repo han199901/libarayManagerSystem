@@ -23,13 +23,10 @@ public class CalendarController {
 
     @RequestMapping("/user/calendar")
     public ModelAndView calender(HttpServletRequest request) {
+        /*从session处获取user*/
         HttpSession session = request.getSession();
-        /*假设已经登录*/
-        User tuser = new User();
-        tuser.setUser_account(123);
-        session.setAttribute("user",tuser);
         User user = (User) session.getAttribute("user");
-        /*假设已经登录*/
+
         ModelAndView view = new ModelAndView("/user/calendar");
         view.addObject("calendar",calendarService.calendarData(user));
         return view;

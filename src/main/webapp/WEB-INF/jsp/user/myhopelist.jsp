@@ -130,8 +130,8 @@
             var hope = {};
             hope['name'] = $("input[name='name']").val();
             hope['publish'] = $("input[name='publish']").val();
-            hope['user_name'] = ${sessionScope.user.name};
-            hope['user_account'] = ${sessionScope.user.user_account};
+            hope['user_name'] = "${sessionScope.user.name}";
+            hope['user_account'] = "${sessionScope.user.user_account}";
 
             hope['time'] = $("input[name='time']").val();
             hope['advice'] = $("input[name='advice']").val();
