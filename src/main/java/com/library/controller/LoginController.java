@@ -44,6 +44,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("user",loginService.getUser(loginInfo.getUser_account()));
             session.setAttribute("credit",creditService.creditDaoData((User) session.getAttribute("user")).get("credit"));
+            
             req.put("code","1");
         }
         else

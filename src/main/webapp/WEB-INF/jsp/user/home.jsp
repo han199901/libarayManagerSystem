@@ -329,6 +329,9 @@
                 title="Grid & List Toggle"></i></a></h5>
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#menu-uni">Library</a></li>
+            <c:if test="${user.type==0}">
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu-admin">Admin</a></li>
+            </c:if>
         </ul>
         <div class="tab-content mt-3">
             <div class="tab-pane fade show active" id="menu-uni" role="tabpanel">
@@ -363,21 +366,37 @@
                     </ul>
                 </nav>
             </div>
+            <c:if test="${user.type==0}">
             <div class="tab-pane fade" id="menu-admin" role="tabpanel">
                 <nav class="sidebar-nav">
                     <ul class="metismenu">
-                        <li><a href="payments.html"><i class="fa fa-credit-card"></i><span>Payments</span></a></li>
-                        <li><a href="noticeboard.html"><i class="fa fa-dashboard"></i><span>Noticeboard</span></a></li>
-                        <li><a href="taskboard.html"><i class="fa fa-list-ul"></i><span>Taskboard</span></a></li>
-                        <li><a href="hostel.html"><i class="fa fa-bed"></i><span>Hostel</span></a></li>
-                        <li><a href="transport.html"><i class="fa fa-truck"></i><span>Transport</span></a></li>
-                        <li><a href="attendance.html"><i class="fa fa-calendar-check-o"></i><span>Attendance</span></a>
-                        </li>
-                        <li><a href="leave.html"><i class="fa fa-flag"></i><span>Leave</span></a></li>
-                        <li><a href="setting.html"><i class="fa fa-gear"></i><span>Settings</span></a></li>
+                        <li class="g_heading">用户管理</li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>账号信息管理</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>信用管理</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>借阅历史记录管理</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>借阅证管理</span></a></li>
+                        <li class="g_heading">图书管理</li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>图书种类管理</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>图书管理</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>维护信息管理</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>愿望管理</span></a></li>
+                        <li class="g_heading">网站管理</li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>公告管理</span></a></li>
+                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                                class="fa fa-dashboard"></i><span>统计报表</span></a></li>
                     </ul>
                 </nav>
             </div>
+            </c:if>
         </div>
     </div>
     <!-- Start project content area -->
