@@ -19,4 +19,8 @@ public class BookSevice {
         return bookDao.getPopularBook();
     }
 
+    public List<Map<String, Object>> bookNameData() {
+        List<Map<String, Object>> result = bookDao.getBookName();
+        return result;
+    }
 }

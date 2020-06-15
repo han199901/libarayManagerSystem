@@ -19,6 +19,7 @@ public class UserMessageDao {
 
     private static final String GET_USER_MESSAGE = "SELECT * FROM user WHERE user_account = ?";
     private static final String UD_USER_INFO = "UPDATE user SET password = ?,name=?,phone_number=?,email=?,description=? WHERE user_account = ?";
+    private static final String GET_USER_NAME = "SELECT name FROM user";
 
     public List<Map<String, Object>> getUserMessage(int userAccount) {
         return jdbcTemplate.queryForList(GET_USER_MESSAGE,new Object[]{userAccount});
@@ -26,5 +27,8 @@ public class UserMessageDao {
     public void ud(User user) {
         String sql = "UPDATE user SET password = ?,name=?,phone_number=?,email=?,description=? WHERE user_account = ?";
         this.jdbcTemplate.update(sql, user.getPassword(),user.getName(),user.getPhone_number(),user.getEmail(),user.getDescription(),user.getUser_account());
+    }
+    public List<Map<String, Object>> getUserName() {
+        return jdbcTemplate.queryForList(GET_USER_NAME);
     }
 }

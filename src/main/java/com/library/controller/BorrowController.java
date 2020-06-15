@@ -6,8 +6,10 @@ import com.library.dao.BorrowHistoryDao;
 import com.library.pojo.BorrowCard;
 import com.library.pojo.BorrowHistory;
 import com.library.pojo.User;
+import com.library.sevice.BookSevice;
 import com.library.sevice.BorrowCardService;
 import com.library.sevice.BorrowHistoryService;
+import com.library.sevice.UserMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -31,14 +33,25 @@ import java.util.*;
 public class BorrowController {
     BorrowHistoryDao borrowHistoryDao;
     BookDao bookDao;
+    BookSevice bookSevice;
     BorrowHistoryService borrowHistoryService;
     BorrowCardDao borrowCardDao;
     BorrowCardService borrowCardService;
+    UserMessageService userMessageService;
+
+
+    @Autowired
+    public void setBookSevice(BookSevice bookSevice) {
+        this.bookSevice = bookSevice;
+    }
+    @Autowired
+    public void setUserMessageService(UserMessageService userMessageService) {
+        this.userMessageService = userMessageService;
+    }
     @Autowired
     public void setBookDao(BookDao bookDao) {
         this.bookDao = bookDao;
     }
-
     @Autowired
     public void setBorrowHistoryService(BorrowHistoryService borrowHistoryService) {
         this.borrowHistoryService = borrowHistoryService;
@@ -173,5 +186,46 @@ public class BorrowController {
     public void cancel(@RequestParam int user_account,HttpServletRequest request, HttpServletResponse response) throws IOException {
         borrowCardDao.updatestatus(0,user_account,1);
         response.sendRedirect("/user/borrowcard");
+    }
+    @RequestMapping("/admin/borrowinghistorymanagement")
+    public ModelAndView borrowhistorymanagement(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/borrowinghistorymanagement");
+        view.addObject("borrowHistory",borrowHistoryService.borrowHistoryAllData());
+        return view;
+    }
+    @RequestMapping("/admin/borrowinghistorymanagement.del")
+    public ModelAndView borrowhistorymanagementdel(@RequestParam int id) {
+        ModelAndView view = new ModelAndView("/admin/borrowinghistorymanagement");
+        Map<String,String> result = new HashMap<>();
+        int a=1;
+        if (a==1){
+            result.put("code","0");
+        } else {
+            result.put("code","1");
+        }
+        borrowHistoryDao.delborrowhistory(id);
+        return view;
+    }
+
+    @RequestMapping("/admin/changeborrowinghistory")
+    @ResponseBody
+    public ModelAndView changeborrowinghistory(@RequestParam int id,HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/changeborrowinghistory");
+        view.addObject("id", id);
+        view.addObject("username", userMessageService.userNameData());
+        view.addObject("bookname", bookSevice.bookNameData());
+        return view;
+    }
+    @RequestMapping("/admin/changeborrowinghistory.save")
+    public ModelAndView changeborrowinghistorysave(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/changeborrowinghistory");
+        String username = request.getParameter("username");
+        int id = Integer.parseInt(request.getParameter("id"));
+        String bookname = request.getParameter("bookname");
+        int ifovertime = Integer.parseInt(request.getParameter("ifovertime"));
+        int overtime = Integer.parseInt(request.getParameter("overtime"));
+        System.out.println(username+"  "+bookname+"  "+ifovertime+"  "+overtime+"  "+id);
+        borrowHistoryService.changeborrowHistoryData(username,bookname,ifovertime,overtime,id);
+        return view;
     }
 }
