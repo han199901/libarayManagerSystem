@@ -39,8 +39,7 @@ public class BookDao {
 
     public List<Map<String, Object>> getBookIndex(String name) {
         System.out.println(name);
-        byte[] bytes = name.getBytes();
-        int a  = jdbcTemplate.queryForObject(GET_BOOK_INDEX,Integer.class,bytes);
+        String a  = jdbcTemplate.queryForObject(GET_BOOK_INDEX,String.class,name);
         System.out.println(a+" !!!!!");
         return  null;
     }
