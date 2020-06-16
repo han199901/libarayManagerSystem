@@ -153,26 +153,20 @@ public class BorrowHistoryService {
     }
 
     public void changeborrowHistoryData(String username, String bookname, int ifovertime, int overtime, int id) {
-        String username1 = "\'" + username + "\'";
-        String bookname1 = "\'" + bookname + "\'";
-        List<Map<String, Object>> result1 = bookDao.getBookIndex(bookname1);
-        List<Map<String, Object>> result2 = userDao.getUserAccount(username1);
+        List<Map<String, Object>> result1 = bookDao.getBookIndex(bookname);
+        List<Map<String, Object>> result2 = userDao.getUserAccount(username);
         int useraccount = 1 ,bookindex = 1 ;
-        /*for(Map<String, Object> i : result2) {
-            System.out.println("i.get(\"user_account\")"+i.get("user_account"));
+        for(Map<String, Object> i : result2) {
             useraccount = (int) i.get("user_account");
-        }*/
+        }
         if(result1.isEmpty())
             System.out.println("result1 is null");
         for (Map<String, Object> i :result1) {
-            System.out.println("i.get(\"index\");"+i.get("index"));
-            /*bookindex = (int) i.get("index");*/
+            bookindex = (int) i.get("index");
         }
         if(overtime <= 0) {
             overtime = 0;
         }
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(useraccount+"  "+bookindex+"  "+ifovertime+"  "+overtime+"  "+id);
-        /*borrowHistoryDao.updateBorrowingHistory(id,useraccount,bookindex,overtime,ifovertime);*/
+        borrowHistoryDao.updateBorrowingHistory(id,useraccount,bookindex,overtime,ifovertime);
     }
 }

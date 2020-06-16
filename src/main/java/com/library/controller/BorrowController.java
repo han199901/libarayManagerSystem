@@ -224,8 +224,16 @@ public class BorrowController {
         String bookname = request.getParameter("bookname");
         int ifovertime = Integer.parseInt(request.getParameter("ifovertime"));
         int overtime = Integer.parseInt(request.getParameter("overtime"));
-        System.out.println(username+"  "+bookname+"  "+ifovertime+"  "+overtime+"  "+id);
+        if(ifovertime == 0) {
+            overtime = 0;
+        }
         borrowHistoryService.changeborrowHistoryData(username,bookname,ifovertime,overtime,id);
+        return view;
+    }
+    @RequestMapping("/admin/borrowcardmanagement")
+    public ModelAndView borrowcardmanagement(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/borrowcardmanagement");
+        view.addObject("borrowCard",borrowCardService.borrowCardAllData());
         return view;
     }
 }

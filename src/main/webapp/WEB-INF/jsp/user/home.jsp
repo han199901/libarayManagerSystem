@@ -377,7 +377,7 @@
                                 class="fa fa-dashboard"></i><span>信用管理</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/admin/borrowinghistorymanagement"><i
                                 class="fa fa-dashboard"></i><span>借阅历史记录管理</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                        <li class="left-li"><a class="J_menuItem" href="/admin/borrowcardmanagement"><i
                                 class="fa fa-dashboard"></i><span>借阅证管理</span></a></li>
                         <li class="g_heading">图书管理</li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i

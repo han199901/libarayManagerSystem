@@ -22,6 +22,7 @@ public class BorrowCardDao {
     private static final String DEL_BORROW_CARD = "UPDATE borrow_card SET status = 2 WHERE user_account = ? ";
     private static final String UPDATE_BORROW_CARD_CREDIT = "UPDATE borrow_card SET credit = ? WHERE user_account = ? and `status` = 0";
     private static final String GET_BORROW_CARD_CREDIT = "SELECT credit FROM borrow_card WHERE user_account = ? AND `status` = 0";
+    private static final String GET_BORROW_CARD_ALL_DATE = "SELECT `index`,`user`.`name` uname,start_time,end_time,borrow_card.`status` bstatus, credit FROM borrow_card,`user` WHERE borrow_card.user_account = `user`.user_account and borrow_card.`status` = 0";
     public List<Map<String, Object>> getborrowcardinfo(int userAccount) {
         return jdbcTemplate.queryForList(GET_BORROW_CARD,new Object[]{userAccount});
     }
@@ -75,6 +76,9 @@ public class BorrowCardDao {
     }
     public int logout(int user_account) {
         return jdbcTemplate.update(DEL_BORROW_CARD,new Object[]{user_account});
+    }
+    public List<Map<String, Object>> getBorrowCardAllDate() {
+        return jdbcTemplate.queryForList(GET_BORROW_CARD_ALL_DATE);
     }
 }
 
