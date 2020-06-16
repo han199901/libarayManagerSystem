@@ -27,7 +27,9 @@ public class BorrowHistoryDao {
     private static final String GET_BORROW_HISTORY_BY_ID = "SELECT * FROM borrow_history WHERE id = ?";
     private static final String INSERT = "INSERT INTO `borrow_history`(`user_account`, `start_time`, `end_time`, `book_index`, `overtime`, `status`) VALUES (?, ?, ?, ?, 0, 0)";
     private static final String UPDATE_BORROW_HISTORY_ENDTIME = "UPDATE borrow_history SET end_time = NOW() WHERE id = ?";
-    /*private static final String UPDATE_*/
+    private static final String GET_ALL_BORROW_HISTORY = "SELECT borrow_history.id bhid,user.name uname,books.name bname,start_time,end_time,overtime,borrow_history.status bhstatus from borrow_history,user,books where borrow_history.user_account=user.user_account and borrow_history.book_index=books.index and (borrow_history.status = 0 or borrow_history.status = 1)";
+    private static final String DEL_BORROW_HISTORY_BY_ID = "UPDATE borrow_history SET status = 2 WHERE id = ?";
+    private static final String DEL_BORROW_HISTORY = "UPDATE borrow_history SET user_account = ?,book_index = ?,overtime = ?,status = ? WHERE id = ?";
 
     public int insert(BorrowHistory borrowHistory) {
         return jdbcTemplate.update(INSERT,new Object[]{borrowHistory.getUser_account(),borrowHistory.getStart_time(),borrowHistory.getEnd_time(),borrowHistory.getBook_index()});
@@ -58,12 +60,28 @@ public class BorrowHistoryDao {
     }
 
     public int  rank(int id) {
-        return jdbcTemplate.queryForObject(GET_SB_BORROW_HISTORY_COUNT,new Object[]{id},Integer.class);
+        List<Map<String, Object>> list = jdbcTemplate.queryForList(GET_SB_BORROW_HISTORY_COUNT,new Object[]{id});
+        if(!list.isEmpty()) {
+            return jdbcTemplate.queryForObject(GET_SB_BORROW_HISTORY_COUNT, new Object[]{id}, Integer.class);
+        } else {
+            return 0;
+        }
     }
     public int  updateendtime(int id) {
         return jdbcTemplate.queryForObject(UPDATE_BORROW_HISTORY_ENDTIME,new Object[]{id},Integer.class);
     }
     public  List<Map<String, Object>> getBorrowHistoryById(int id) {
         return jdbcTemplate.queryForList(GET_BORROW_HISTORY_BY_ID,new Object[]{id});
+    }
+
+    public  List<Map<String, Object>> getAllBorrowHistory() {
+        return jdbcTemplate.queryForList(GET_ALL_BORROW_HISTORY);
+    }
+    public int  delborrowhistory(int id) {
+        return jdbcTemplate.update(DEL_BORROW_HISTORY_BY_ID,new Object[]{id});
+    }
+
+    public int updateBorrowingHistory(int id, int user_account, int book_index, int overtime, int status) {
+        return jdbcTemplate.update(DEL_BORROW_HISTORY,new Object[]{user_account,book_index,overtime,status,id});
     }
 }

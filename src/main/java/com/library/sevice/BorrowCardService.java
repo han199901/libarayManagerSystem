@@ -38,4 +38,15 @@ public class BorrowCardService {
     public void deleteBorrowCard(User user) {
         borrowCardDao.logout(user.getUser_account());
     }
+
+    public List<Map<String, Object>> borrowCardAllData() {
+        List<Map<String, Object>> result = borrowCardDao.getBorrowCardAllDate();
+        for (Map<String, Object> i :result) {
+            int a = (int) i.get("bstatus");
+            if(a == 0) {
+                i.put("bstatusname", "正常");
+            }
+        }
+        return result;
+    }
 }

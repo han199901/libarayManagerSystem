@@ -1,7 +1,9 @@
 package com.library.sevice;
 
+import com.library.dao.BookDao;
 import com.library.dao.BorrowCardDao;
 import com.library.dao.BorrowHistoryDao;
+import com.library.dao.UserDao;
 import com.library.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,18 @@ import java.util.*;
 public class BorrowHistoryService {
     BorrowHistoryDao borrowHistoryDao;
     BorrowCardDao borrowCardDao;
+    UserDao userDao;
+    BookDao bookDao;
+
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    @Autowired
+    public void setBookDao(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
 
     @Autowired
     public void setBorrowCardDao(BorrowCardDao borrowCardDao) {
@@ -104,8 +118,55 @@ public class BorrowHistoryService {
             }
             borrowCardDao.updateborrowcardcredit(credit,d);
             borrowHistoryDao.updateOvertime(id,a);
-            /*borrowHistoryDao.updateendtime(id);*/
+            borrowHistoryDao.updateendtime(id);
         }
         borrowHistoryDao.delete(id);
+    }
+
+    public List<Map<String, Object>> borrowHistoryAllData() {
+        List<Map<String, Object>> result = borrowHistoryDao.getAllBorrowHistory();
+        for (Map<String, Object> i :result) {
+            int a = (int) i.get("bhstatus");
+            if(a == 1) {
+                i.put("statusname","已归还");
+            } else {
+                i.put("statusname","未归还");
+            }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date date1 = new Date();
+            Date now = date1;
+            Date date2 = (Date) i.get("end_time");
+            /*SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date date1 = new Date();
+            Date start_time = date1;*/
+            if(date2.compareTo(now) < 0 && a == 0) {
+                long day = (now.getTime() - date2.getTime()) / (24 * 60 * 60 * 1000);
+                i.put("days", "已超时"+day+"天");
+            } else if(date2.compareTo(now) < 0 && a == 1) {
+                int day = (int) i.get("overtime");
+                i.put("days", "超时"+day+"天");
+            } else {
+                i.put("days", "未超时");
+            }
+        }
+        return result;
+    }
+
+    public void changeborrowHistoryData(String username, String bookname, int ifovertime, int overtime, int id) {
+        List<Map<String, Object>> result1 = bookDao.getBookIndex(bookname);
+        List<Map<String, Object>> result2 = userDao.getUserAccount(username);
+        int useraccount = 1 ,bookindex = 1 ;
+        for(Map<String, Object> i : result2) {
+            useraccount = (int) i.get("user_account");
+        }
+        if(result1.isEmpty())
+            System.out.println("result1 is null");
+        for (Map<String, Object> i :result1) {
+            bookindex = (int) i.get("index");
+        }
+        if(overtime <= 0) {
+            overtime = 0;
+        }
+        borrowHistoryDao.updateBorrowingHistory(id,useraccount,bookindex,overtime,ifovertime);
     }
 }
