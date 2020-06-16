@@ -389,7 +389,7 @@
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i
                                 class="fa fa-dashboard"></i><span>愿望管理</span></a></li>
                         <li class="g_heading">网站管理</li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                        <li class="left-li"><a class="J_menuItem" href="/admin/noticelist"><i
                                 class="fa fa-dashboard"></i><span>公告管理</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i
                                 class="fa fa-dashboard"></i><span>统计报表</span></a></li>
