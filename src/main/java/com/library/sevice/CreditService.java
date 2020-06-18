@@ -20,4 +20,9 @@ public class CreditService {
         result.put("credit",creditDao.getCredit(user.getUser_account()));
         return result;
     }
+    public Map<String,Object> creditDataForAdmin() {
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("creditadmin",creditDao.getCreditForAdmin());
+        return result;
+    }
 }
