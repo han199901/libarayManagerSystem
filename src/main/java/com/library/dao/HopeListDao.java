@@ -19,7 +19,7 @@ public class HopeListDao {
 
     private static final String GET_HOPE_LIST = "SELECT * FROM hope WHERE user_account = ?";
     private static final String UD_HOPE_LIST_STS = "UPDATE hope SET status = ? WHERE id = ? AND status = ?";
-
+    private static final String AD_GET_HOPE_LIST = "SELECT * FROM hope order by status desc";
     public List<Map<String, Object>> getHopeList(int userAccount) {
         return jdbcTemplate.queryForList(GET_HOPE_LIST,new Object[]{userAccount});
     }
@@ -35,5 +35,8 @@ public class HopeListDao {
     }
     public int updateHopeStatus(int newstatus,int id,int nowstatus) {
         return jdbcTemplate.update(UD_HOPE_LIST_STS,new Object[]{newstatus,id,nowstatus});
+    }
+    public List<Map<String, Object>> getHopeListForAdmin() {
+        return jdbcTemplate.queryForList(AD_GET_HOPE_LIST);
     }
 }
