@@ -22,5 +22,9 @@ public class HopeListService {
         result.put("hopeList",hopeListDao.getHopeList(user.getUser_account()));
         return result;
     }
-
+    public Map<String,Object> hopeListDataForAdmin() {
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("hopeListadmin",hopeListDao.getHopeListForAdmin());
+        return result;
+    }
 }

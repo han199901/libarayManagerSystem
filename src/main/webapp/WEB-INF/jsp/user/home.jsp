@@ -386,7 +386,7 @@
                                 class="fa fa-dashboard"></i><span>图书管理</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i
                                 class="fa fa-dashboard"></i><span>维护信息管理</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                        <li class="left-li"><a class="J_menuItem" href="/admin/myhopelistadmin"><i
                                 class="fa fa-dashboard"></i><span>愿望管理</span></a></li>
                         <li class="g_heading">网站管理</li>
                         <li class="left-li"><a class="J_menuItem" href="/admin/noticelist"><i
