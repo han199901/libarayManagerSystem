@@ -373,7 +373,7 @@
                         <li class="g_heading">用户管理</li>
                         <li class="left-li"><a class="J_menuItem" href="/blank"><i
                                 class="fa fa-dashboard"></i><span>账号信息管理</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                        <li class="left-li"><a class="J_menuItem" href="/admin/creditadmin"><i
                                 class="fa fa-dashboard"></i><span>信用管理</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/admin/borrowinghistorymanagement"><i
                                 class="fa fa-dashboard"></i><span>借阅历史记录管理</span></a></li>
