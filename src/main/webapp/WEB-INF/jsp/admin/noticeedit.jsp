@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 韩勇
@@ -29,17 +30,28 @@
         <div class="layui-tab-content" >
             <div class="layui-tab-item layui-show">
                 <form class="layui-form layui-form-pane" action="">
-
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">ID: </label>
+                        <div class="layui-input-inline">
+                            <input type="number" readonly="true" class="layui-input" name="id" value="${info.id}"/>
+                        </div>
+                    </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">作者: </label>
                         <div class="layui-input-inline">
-                            <input type="number" readonly="true" class="layui-input" name="user_account" value="${user.user_account}"/>
+                            <input type="number" readonly="true" class="layui-input" name="user_account" value="${info.user_account}"/>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公告开始日期</label>
+                        <div class="layui-input-inline">
+                            <input type="datetime-local" class="layui-input" name="start_time" placeholder="yyyy-MM-dd HH:mm:ss" value="${info.start_time}">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">公告结束日期</label>
                         <div class="layui-input-inline">
-                            <input type="datetime-local" class="layui-input" name="end_time" placeholder="yyyy-MM-dd HH:mm:ss">
+                            <input type="datetime-local" class="layui-input" name="end_time" placeholder="yyyy-MM-dd HH:mm:ss" value="${info.end_time}">
                         </div>
                     </div>
 
@@ -48,7 +60,7 @@
                             <span class='x-red'>*</span>公告内容
                         </label>
                         <div class="layui-input-block">
-                            <input  placeholder="此处填写公告内容" name="content"></input>
+                            <input  placeholder="此处填写公告内容" name="content" value="${info.content}" />
                         </div>
                     </div>
 
@@ -81,7 +93,7 @@
             console.log(JSON.stringify(data));
             $.ajax({
                 type:"POST",
-                url:"/admin/noticeadd_r",
+                url:"/admin/noticeedit_r",
                 data:JSON.stringify(data),
                 dataType:"json",
                 contentType: "application/json",

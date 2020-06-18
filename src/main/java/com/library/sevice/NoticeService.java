@@ -9,7 +9,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class NoticeService {
@@ -19,7 +18,7 @@ public class NoticeService {
         this.announcementDao = announcementDao;
     }
 
-    public List<Map<String,Object>> getAllNotice() {
+    public List<Announcement> getAllNotice() {
         return announcementDao.getAllAnnouncement();
     }
     public boolean insert(Announcement announcement) {
@@ -33,5 +32,17 @@ public class NoticeService {
         }
         announcement.setStart_time(currentTime);
         return announcementDao.insert(announcement)==1;
+    }
+
+    public boolean update(Announcement announcement) {
+        return announcementDao.update(announcement)==1;
+    }
+
+    public Announcement getAnnouncement(int id) {
+        return announcementDao.getAnnouncementByID(id);
+    }
+
+    public boolean del(int id) {
+        return announcementDao.delAnnouncementByID(id)==1;
     }
 }

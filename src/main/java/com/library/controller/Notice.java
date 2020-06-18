@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,6 +38,32 @@ public class Notice {
     public Map<String, String> noticeAdd_r(@RequestBody Announcement announcement) {
         Map<String, String> map = new HashMap<>();
         if(noticeService.insert(announcement))
+            map.put("status","1");
+        else
+            map.put("status","0");
+        return map;
+    }
+    @RequestMapping("/admin/noticeedit")
+    public ModelAndView noticeEdit(@RequestParam int id) {
+        ModelAndView view = new ModelAndView("/admin/noticeedit");
+        view.addObject("info",noticeService.getAnnouncement(id));
+        return view;
+    }
+    @RequestMapping("/admin/noticedel")
+    @ResponseBody
+    public Map<String, String> noticeDel(@RequestParam int id) {
+        Map<String, String> map = new HashMap<>();
+        if(noticeService.del(id))
+            map.put("status","1");
+        else
+            map.put("status","0");
+        return map;
+    }
+    @RequestMapping("/admin/noticeedit_r")
+    @ResponseBody
+    public Map<String, String> noticeEdit_r(@RequestBody Announcement announcement) {
+        Map<String, String> map = new HashMap<>();
+        if(noticeService.update(announcement))
             map.put("status","1");
         else
             map.put("status","0");

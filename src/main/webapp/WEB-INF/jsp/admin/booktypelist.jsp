@@ -26,42 +26,31 @@
 <body>
 <div class="x-body">
     <xblock><%--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>--%>
-        <button class="layui-btn" onclick="member_add('添加公告','noticeadd','800','600')"><i class="layui-icon">&#xe608;</i>添加</button>
+        <button class="layui-btn" onclick="member_add('添加类型','booktypeadd','800','600')"><i class="layui-icon">&#xe608;</i>添加类型</button>
         <%--<span class="x-right" style="line-height:40px">共有数据：<span class="layui-badge">66</span> 条</span>--%></xblock>
     <table class="layui-table">
         <thead>
         <tr>
             <th>
-                发布人
+                序号
             </th>
             <th>
-                内容简介
-            </th>
-            <th>
-                加入时间
-            </th>
-            <th>
-                结束时间
-            </th>
-            <th>
-                操作
+                类型名称
             </th>
         </tr>
         </thead>
         <tbody id="x-img">
-        <c:forEach items="${notices}" var="notice">
+        <c:forEach items="${booktypes}" var="booktype">
             <tr>
-                <th>${notice.user_account}</th>
-                <th>${notice.content}</th>
-                <th><fmt:formatDate value="${notice.start_time}" pattern="yyyy-MM-dd hh:mm:ss"/></th>
-                <th><fmt:formatDate value="${notice.end_time}" pattern="yyyy-MM-dd hh:mm:ss"/></th>
+                <th>${booktype.type_index}</th>
+                <th>${booktype.name}</th>
                 <td class="td-manage">
-                    <a title="编辑" href="javascript:;" onclick="member_edit('编辑','noticeedit?id=${notice.id}','4','','510')"
+                    <a title="编辑" href="javascript:;" onclick="member_edit('编辑','booktypeedit?id=${booktype.id}','4','','510')"
                        class="ml-5" style="text-decoration:none">
                         <i class="layui-icon">&#xe642;</i>
                     </a>
 
-                    <a title="删除" href="javascript:;" onclick="member_del(this,'${notice.id}')"
+                    <a title="删除" href="javascript:;" onclick="member_del(this,'${booktype.id}')"
                        style="text-decoration:none">
                         <i class="layui-icon">&#xe640;</i>
                     </a>
@@ -75,17 +64,6 @@
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
 <script src="../js/x-layui.js" charset="utf-8"></script>
 <script>
-    function formatTime(date) {
-        /* 从Date对象（标准时间格式）返回对应数据 */
-        var date = new Date(date);
-        let year = date.getFullYear();
-        let month = date.getMonth();
-        let day = date.getDate();
-        let hour = date.getHours();
-        let minute = date.getMinutes();
-        let second = date.getSeconds();
-        return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second ;
-    }
     layui.use(['laydate','element','laypage','layer'], function(){
         $ = layui.jquery;//jquery
         laydate = layui.laydate;//日期插件
@@ -192,7 +170,7 @@
             //发异步删除数据
             $.ajax({
                 type:"POST",
-                url:"/admin/noticedel?id="+id,
+                url:"/admin/booktypedel?id="+id,
                 success:function (data) {
                     if(data.status==1){
                         setTimeout(function(){

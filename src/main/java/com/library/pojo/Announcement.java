@@ -1,13 +1,14 @@
 package com.library.pojo;
 
+
 import java.util.Date;
 
 public class Announcement {
-    int id;
-    int user_account;
-    String content;
-    Date start_time;
-    Date end_time;
+    private int id;
+    private int user_account;
+    private String content;
+    private Date start_time;
+    private Date end_time;
 
     @Override
     public String toString() {

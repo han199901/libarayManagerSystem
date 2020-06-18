@@ -30,25 +30,21 @@
             <div class="layui-tab-item layui-show">
                 <form class="layui-form layui-form-pane" action="">
 
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">作者: </label>
-                        <div class="layui-input-inline">
-                            <input type="number" readonly="true" class="layui-input" name="user_account" value="${user.user_account}"/>
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">公告结束日期</label>
-                        <div class="layui-input-inline">
-                            <input type="datetime-local" class="layui-input" name="end_time" placeholder="yyyy-MM-dd HH:mm:ss">
-                        </div>
-                    </div>
 
                     <div class="layui-form-item">
                         <label class="layui-form-label">
-                            <span class='x-red'>*</span>公告内容
+                            <span class='x-red'>*</span>类型序号
                         </label>
                         <div class="layui-input-block">
-                            <input  placeholder="此处填写公告内容" name="content"></input>
+                            <input type="number"  placeholder="此处填写类型序号" name="type_index"></input>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class='x-red'>*</span>类型名称
+                        </label>
+                        <div class="layui-input-block">
+                            <input type="text"  placeholder="此处填写类型名称" name="name"></input>
                         </div>
                     </div>
 
@@ -81,7 +77,7 @@
             console.log(JSON.stringify(data));
             $.ajax({
                 type:"POST",
-                url:"/admin/noticeadd_r",
+                url:"/admin/booktypeadd_r",
                 data:JSON.stringify(data),
                 dataType:"json",
                 contentType: "application/json",
