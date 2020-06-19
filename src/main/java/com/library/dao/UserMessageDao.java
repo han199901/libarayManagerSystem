@@ -20,6 +20,8 @@ public class UserMessageDao {
     private static final String GET_USER_MESSAGE = "SELECT * FROM user WHERE user_account = ?";
     private static final String UD_USER_INFO = "UPDATE user SET password = ?,name=?,phone_number=?,email=?,description=? WHERE user_account = ?";
     private static final String GET_USER_NAME = "SELECT name FROM user";
+    private static final String AD_GET_USER_LIST = "SELECT * FROM user where status = 1 order by type asc";
+    private static final String UD_USER_STS = "UPDATE user SET status = ? WHERE id = ?";
 
     public List<Map<String, Object>> getUserMessage(int userAccount) {
         return jdbcTemplate.queryForList(GET_USER_MESSAGE,new Object[]{userAccount});
@@ -30,5 +32,13 @@ public class UserMessageDao {
     }
     public List<Map<String, Object>> getUserName() {
         return jdbcTemplate.queryForList(GET_USER_NAME);
+    }
+
+    public int updateUserStatus(int newstatus,int id) {
+        return jdbcTemplate.update(UD_USER_STS,new Object[]{newstatus,id});
+    }
+
+    public List<Map<String, Object>> getUserForAdmin() {
+        return jdbcTemplate.queryForList(AD_GET_USER_LIST);
     }
 }

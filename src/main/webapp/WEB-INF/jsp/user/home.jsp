@@ -371,7 +371,7 @@
                 <nav class="sidebar-nav">
                     <ul class="metismenu">
                         <li class="g_heading">用户管理</li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                        <li class="left-li"><a class="J_menuItem" href="/admin/useradmin"><i
                                 class="fa fa-dashboard"></i><span>账号信息管理</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/admin/creditadmin"><i
                                 class="fa fa-dashboard"></i><span>信用管理</span></a></li>
