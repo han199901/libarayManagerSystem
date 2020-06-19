@@ -33,6 +33,7 @@ public class HopeListController {
     public void setHopeListService(HopeListService hopeListService) {
         this.hopeListService = hopeListService;
     }
+
     @RequestMapping("/user/myhopelist.s")
     public void hopeliststatus(@RequestParam int id, HttpServletResponse response) throws IOException {
         hopeListDao.updateHopeStatus(0,id,1);
@@ -47,7 +48,7 @@ public class HopeListController {
         return hopes;
     }
     @RequestMapping("/user/myhopelist")
-    public ModelAndView userMessage(HttpServletRequest request) throws IOException {
+    public ModelAndView hopelsit(HttpServletRequest request) throws IOException {
         /*从session处获取user*/
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -65,7 +66,28 @@ public class HopeListController {
         return view;
 
     }
+    @RequestMapping("/admin/myhopelistadmin")
+    public ModelAndView hopelsitforadmin(HttpServletRequest request) throws IOException {
+        /*从session处获取user*/
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
+        ModelAndView view;
+        if(user==null) {
+            view = new ModelAndView("/login");
+        }
+        else {
 
+            view = new ModelAndView("/admin/myhopelistadmin");
+            HashMap<String,Object> data = (HashMap<String, Object>) hopeListService.hopeListDataForAdmin();
+            view.addObject("hopeListadmin",data.get("hopeListadmin"));
+        }
+        return view;
 
+    }
+    @RequestMapping("/admin/myhopelistadmin.s")
+    public void hopeliststatusad(@RequestParam int id, HttpServletResponse response) throws IOException {
+        hopeListDao.updateHopeStatus(0,id,1);
+        response.sendRedirect("myhopelistadmin");
+    }
 }
