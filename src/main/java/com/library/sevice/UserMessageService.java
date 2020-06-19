@@ -27,4 +27,9 @@ public class UserMessageService {
         List<Map<String, Object>> result = userMessageDao.getUserName();
         return result;
     }
+    public Map<String,Object> userDataForAdmin() {
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("useradmin",userMessageDao.getUserForAdmin());
+        return result;
+    }
 }
