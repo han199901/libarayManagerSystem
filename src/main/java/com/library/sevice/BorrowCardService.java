@@ -1,6 +1,7 @@
 package com.library.sevice;
 
 import com.library.dao.BorrowCardDao;
+import com.library.dao.UserDao;
 import com.library.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,12 @@ import java.util.Map;
 @Service
 public class BorrowCardService {
     BorrowCardDao borrowCardDao;
+    UserDao userDao;
+
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Autowired
     public void setBorrowCardDao(BorrowCardDao borrowCardDao) { this.borrowCardDao = borrowCardDao; }
@@ -45,8 +52,26 @@ public class BorrowCardService {
             int a = (int) i.get("bstatus");
             if(a == 0) {
                 i.put("bstatusname", "正常");
+            } else if(a == 1) {
+                i.put("bstatusname", "挂失");
             }
         }
         return result;
+    }
+    public String borrowCardName(int id) {
+        String name = borrowCardDao.getborrowcardname(id);
+        return name;
+    }
+    public List<Map<String, Object>> borrowCardWithoutData() {
+        List<Map<String, Object>> result = borrowCardDao.getBorrowCardWithoutDate();
+        return result;
+    }
+    public void addBorrowCard(String name) {
+        List<Map<String, Object>> result = userDao.getUserAccount(name);
+        int user_account = 0;
+        for (Map<String, Object> i : result) {
+            user_account = (int) i.get("user_account");
+        }
+        borrowCardDao.insert(user_account);
     }
 }

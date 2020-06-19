@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: zyc
-  Date: 2020/6/15
-  Time: 23:01
+  Date: 2020/6/18
+  Time: 20:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -38,38 +38,43 @@
                             <table class="table table-hover js-basic-example dataTable table-striped table_custom border-style spacing5">
                                 <thead>
                                 <tr>
-                                    <th>借阅号</th>
-                                    <th>姓名</th>
-                                    <th>开卡时间</th>
-                                    <th>过期时间</th>
-                                    <th>是否挂失</th>
-                                    <th>信誉值</th>
+                                    <th>书本编号</th>
+                                    <th>书名</th>
+                                    <th>分类</th>
+                                    <th>简介</th>
+                                    <th>作者</th>
+                                    <th>状态</th>
+                                    <th>详情</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${borrowCard}" var="b">
+                                <c:forEach items="${books}" var="b">
                                     <tr>
                                         <td>${b.index}</td>
-                                        <td>${b.uname}</td>
-                                        <td>${b.start_time}</td>
-                                        <td>${b.end_time}</td>
-                                        <c:if test="${b.bstatus == 0}">
-                                            <td><span class="tag tag-success">${b.bstatusname}</span></td>
+                                        <td>${b.bname}</td>
+                                        <td>${b.btname}</td>
+                                        <td>${b.description}</td>
+                                        <td>${b.author}</td>
+                                        <c:if test="${b.status == 1}">
+                                            <td><span class="tag tag-success">${b.statusname}</span></td>
                                         </c:if>
-                                        <c:if test="${b.bstatus == 1}">
-                                            <td><span class="tag tag-warning">${b.bstatusname}</span></td>
+                                        <c:if test="${b.status == 0}">
+                                            <td><span class="tag tag-warning">${b.statusname}</span></td>
                                         </c:if>
-                                        <td>${b.credit}</td>
+                                        <c:if test="${b.status == 2}">
+                                            <td><span class="tag tag-danger">${b.statusname}</span></td>
+                                        </c:if>
+                                        <td><a class="layui-btn layui-btn-sm layui-btn-checked" title="详情" onclick="execute_open('书籍详情', 'bookinfo?id=${b.index}', 1000, 500)" href="javascript:;">详情</a></td>
                                         <td>
-                                            <a class="layui-btn layui-btn-sm layui-btn-normal" title="编辑" onclick="execute_open('编辑借阅证', 'changeborrowcard?id=${b.bcid}', 1000, 500)" href="javascript:;">编辑</a>
-                                            <a class="layui-btn layui-btn-sm layui-btn-danger" title="删除" onclick="execute_del(this, '${b.uindex}', 'borrowcardmanagement.del')" href="javascript:;">删除</a>
+                                            <a class="layui-btn layui-btn-sm layui-btn-normal" title="编辑" onclick="execute_open('编辑书籍信息', 'changebooks?id=${b.index}', 1000, 500)" href="javascript:;">编辑</a>
+                                            <a class="layui-btn layui-btn-sm layui-btn-danger" title="废弃" onclick="execute_del(this, '${b.index}', 'booksmanagement.del')" href="javascript:;">废弃</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
-                                    <tr>
-                                        <a class="layui-btn layui-btn-sm layui-btn-normal" title="新建" onclick="execute_open('新建借阅证', 'addborrowcard', 1000, 500)" href="javascript:;">新建</a>
-                                    </tr>
+                                <tr>
+                                    <a class="layui-btn layui-btn-sm layui-btn-normal" title="新增" onclick="execute_open('新建借阅证', 'addbook', 1000, 500)" href="javascript:;">新增</a>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

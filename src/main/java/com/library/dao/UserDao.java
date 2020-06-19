@@ -19,6 +19,7 @@ public class UserDao {
 
     private static final String GET_BY_USER_ACCOUNT = "SELECT * FROM user WHERE user_account = ?";
     private static final String GET_USER_USER_ACCOUNT= "SELECT user_account FROM user WHERE name = ?";
+    private static final String GET_USER_DATE = "SELECT * FROM user";
 
     public List<Map<String, Object>> getByUserAccount(int userAccount) {
         return jdbcTemplate.queryForList(GET_BY_USER_ACCOUNT,new Object[]{userAccount});
@@ -30,5 +31,8 @@ public class UserDao {
 
     public List<Map<String, Object>> getUserAccount(String name) {
         return jdbcTemplate.queryForList(GET_USER_USER_ACCOUNT,new Object[]{name});
+    }
+    public List<Map<String, Object>> getUserDate() {
+        return jdbcTemplate.queryForList(GET_USER_DATE);
     }
 }

@@ -24,7 +24,7 @@
 
     <!-- Core css -->
     <link rel="stylesheet" href="../css/style.min.css"/>
-    <link rel="stylesheet" href="../lib/zyclib/layui/layui.css" media="all">
+    <link rel="stylesheet" href="../lib/zyclib/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../lib/zyclib/admin.css" media="all">
 </head>
 <body>

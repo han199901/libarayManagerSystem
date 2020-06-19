@@ -159,7 +159,7 @@ function execute_open(title, url, width, height) {
         shadeClose: true,
         shade: 0.8,
         area: [''+ width +'px', ''+ height +'px'],
-        content: ''+ url +''+id
+        content: ''+ url +''
     });
 }
 
@@ -181,14 +181,16 @@ function execute_del(obj, id, url) {
             success:function(data) {
 				layer.closeAll('loading');
                 if (data.code == 0) {
-                    $(obj).parents("tr").remove();
-                    layer.msg(data.message,{icon:1,time:1000});return false;
+					window.location.reload();
+                    layer.msg("success",{icon:1,time:1000});return false;
                 } else {
-                    layer.msg(data.message,{icon:2,time:1000});return false;
+					window.location.reload();
+                    layer.msg("failed",{icon:2,time:1000});return false;
                 }
             },
 			error : function(e){
 				layer.closeAll('loading');
+				window.location.reload();
 				layer.msg(e.responseText, {icon: 2, time: 1000});
 			}
         });

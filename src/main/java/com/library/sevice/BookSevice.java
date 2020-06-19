@@ -4,6 +4,7 @@ import com.library.dao.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 
@@ -22,5 +23,35 @@ public class BookSevice {
     public List<Map<String, Object>> bookNameData() {
         List<Map<String, Object>> result = bookDao.getBookName();
         return result;
+    }
+    public List<Map<String, Object>> allBooksData() {
+        List<Map<String, Object>> result = bookDao.getAllBook();
+        for (Map<String, Object> i : result) {
+            int a = (int) i.get("status");
+            if (a == 0) {
+                i.put("statusname","不可借");
+            } else if (a == 1) {
+                i.put("statusname","可借");
+            } else {
+                i.put("statusname","已废弃");
+            }
+        }
+        return result;
+    }
+    public Map<String, Object> oneBooksData(int id) {
+        List<Map<String, Object>> result = bookDao.getBookById(id);
+        Map<String, Object> result2 = null;
+        for (Map<String, Object> i : result) {
+            int a = (int) i.get("status");
+            if (a == 0) {
+                i.put("statusname","不可借");
+            } else if (a == 1) {
+                i.put("statusname","可借");
+            } else {
+                i.put("statusname","已废弃");
+            }
+            result2 = i;
+        }
+        return result2;
     }
 }
