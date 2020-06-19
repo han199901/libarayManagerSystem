@@ -194,8 +194,7 @@ public class BorrowController {
         return view;
     }
     @RequestMapping("/admin/borrowinghistorymanagement.del")
-    public ModelAndView borrowhistorymanagementdel(@RequestParam int id) {
-        ModelAndView view = new ModelAndView("/admin/borrowinghistorymanagement");
+    public Map<String,String> borrowhistorymanagementdel(@RequestParam int id) {
         Map<String,String> result = new HashMap<>();
         int a=1;
         if (a==1){
@@ -204,7 +203,7 @@ public class BorrowController {
             result.put("code","1");
         }
         borrowHistoryDao.delborrowhistory(id);
-        return view;
+        return result;
     }
 
     @RequestMapping("/admin/changeborrowinghistory")
@@ -235,5 +234,66 @@ public class BorrowController {
         ModelAndView view = new ModelAndView("/admin/borrowcardmanagement");
         view.addObject("borrowCard",borrowCardService.borrowCardAllData());
         return view;
+    }
+    @RequestMapping("/admin/borrowcardmanagement.del")
+    public Map<String,String> borrowcardmanagementdel(@RequestParam int id) {
+        Map<String,String> result = new HashMap<>();
+        int a=1;
+        if (a==1){
+            result.put("code","0");
+        } else {
+            result.put("code","1");
+        }
+        borrowCardDao.logout(id);
+        return result;
+    }
+
+    @RequestMapping("/admin/changeborrowcard")
+    @ResponseBody
+    public ModelAndView changeborrowcard(@RequestParam int id,HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/changeborrowcard");
+        view.addObject("id", id);
+        view.addObject("username",borrowCardService.borrowCardName(id));
+        return view;
+    }
+    @RequestMapping("/admin/borrowcardmanagement.save")
+    public ModelAndView borrowcardmanagementsave(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/borrowcardmanagement");
+        int id = Integer.parseInt(request.getParameter("id"));
+        int ifloss = Integer.parseInt(request.getParameter("ifloss"));
+        int credit = Integer.parseInt(request.getParameter("credit"));
+        borrowCardDao.updateborrowcard(id,ifloss,credit);
+        return view;
+    }
+    @RequestMapping("/admin/addborrowcard")
+    public ModelAndView addborrowcard(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/addborrowcard");
+        view.addObject("user",borrowCardService.borrowCardWithoutData());
+        return view;
+    }
+    @RequestMapping("/admin/addborrowcard.save")
+    public ModelAndView addborrowcardsave(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/addborrowcard");
+        String username = request.getParameter("user");
+        borrowCardService.addBorrowCard(username);
+        return view;
+    }
+    @RequestMapping("/admin/booksmanagement")
+    public ModelAndView booksmanagement(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/booksmanagement");
+        view.addObject("books",bookSevice.allBooksData());
+        return view;
+    }
+    @RequestMapping("/admin/booksmanagement.del")
+    public Map<String,String> booksmanagementdel(@RequestParam int id) {
+        Map<String,String> result = new HashMap<>();
+        int a=1;
+        if (a==1){
+            result.put("code","0");
+        } else {
+            result.put("code","1");
+        }
+        bookDao.abandon(id);
+        return result;
     }
 }

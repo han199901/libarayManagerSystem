@@ -22,7 +22,11 @@ public class BorrowCardDao {
     private static final String DEL_BORROW_CARD = "UPDATE borrow_card SET status = 2 WHERE user_account = ? ";
     private static final String UPDATE_BORROW_CARD_CREDIT = "UPDATE borrow_card SET credit = ? WHERE user_account = ? and `status` = 0";
     private static final String GET_BORROW_CARD_CREDIT = "SELECT credit FROM borrow_card WHERE user_account = ? AND `status` = 0";
-    private static final String GET_BORROW_CARD_ALL_DATE = "SELECT `index`,`user`.`name` uname,start_time,end_time,borrow_card.`status` bstatus, credit FROM borrow_card,`user` WHERE borrow_card.user_account = `user`.user_account and borrow_card.`status` = 0";
+    private static final String GET_BORROW_CARD_ALL_DATE = "SELECT borrow_card.id bcid,`index`,`user`.`name` uname,borrow_card.user_account uindex,start_time,end_time,borrow_card.`status` bstatus, credit FROM borrow_card,`user` WHERE borrow_card.user_account = `user`.user_account and (borrow_card.`status` = 0 or borrow_card.`status` = 1)";
+    private static final String GET_BORROW_CARD_NAME = "SELECT `user`.`name` uname FROM `borrow_card`,`user` WHERE borrow_card.user_account=`user`.user_account AND borrow_card.id = ?";
+    private static final String UPDATE_BORROW_CARD = "UPDATE borrow_card SET `status` = ?,credit = ? WHERE id = ?";
+    private static final String GET_BORROW_CARD_WITHOUT_DATE = "SELECT * FROM `user` where user_account not in (select user_account from borrow_card where `status` =1 or `status`=0);";
+
     public List<Map<String, Object>> getborrowcardinfo(int userAccount) {
         return jdbcTemplate.queryForList(GET_BORROW_CARD,new Object[]{userAccount});
     }
@@ -79,6 +83,15 @@ public class BorrowCardDao {
     }
     public List<Map<String, Object>> getBorrowCardAllDate() {
         return jdbcTemplate.queryForList(GET_BORROW_CARD_ALL_DATE);
+    }
+    public String getborrowcardname(int id) {
+        return jdbcTemplate.queryForObject(GET_BORROW_CARD_NAME, new Object[]{id}, String.class);
+    }
+    public int updateborrowcard(int id,int ifloss,int credit) {
+        return jdbcTemplate.update(UPDATE_BORROW_CARD,new Object[]{ifloss,credit,id});
+    }
+    public List<Map<String, Object>> getBorrowCardWithoutDate() {
+        return jdbcTemplate.queryForList(GET_BORROW_CARD_WITHOUT_DATE);
     }
 }
 

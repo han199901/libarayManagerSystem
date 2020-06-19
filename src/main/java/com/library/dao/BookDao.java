@@ -20,6 +20,8 @@ public class BookDao {
     private static final String UPDATE_STATUS_FALSE = "UPDATE `books` SET `status` = 0 WHERE `index` = ?";
     private static final String GET_BOOK_NAME = "SELECT name FROM books ";
     private static final String GET_BOOK_INDEX= "SELECT `index` FROM books WHERE `name` = ?";
+    private static final String GET_ALL_BOOK = "SELECT books.id bid,`index`,books.`name` bname,description,book_type.`name` btname,author,ISBN,books.type_index typeindex,entry_time,`status`,publish,`like`,locate,price,ruin_time FROM books,book_type WHERE books.type_index = book_type.type_index ";
+    private static final String DEL_BOOK= "UPDATE `books` SET `status` = 2 WHERE `index` = ?";
 
     public List<Map<String, Object>> getByName(String name) {
         return jdbcTemplate.queryForList(GET_BY_NAME,name);
@@ -39,5 +41,13 @@ public class BookDao {
 
     public List<Map<String, Object>> getBookIndex(String name) {
         return  jdbcTemplate.queryForList(GET_BOOK_INDEX,new Object[]{name});
+    }
+
+    public List<Map<String, Object>> getAllBook() {
+        return  jdbcTemplate.queryForList(GET_ALL_BOOK);
+    }
+
+    public int abandon(int index) {
+        return  jdbcTemplate.update(DEL_BOOK,new Object[]{index});
     }
 }
