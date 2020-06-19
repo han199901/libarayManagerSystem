@@ -65,15 +65,15 @@
                                         <c:if test="${b.status == 2}">
                                             <td><span class="tag tag-danger">${b.statusname}</span></td>
                                         </c:if>
-                                        <td><a class="layui-btn layui-btn-sm layui-btn-checked" title="编辑" onclick="execute_open('书籍详情', 'changeborrowcard?id=${b.bcid}', 1000, 500)" href="javascript:;">详情</a></td>
+                                        <td><a class="layui-btn layui-btn-sm layui-btn-checked" title="详情" onclick="execute_open('书籍详情', 'bookinfo?id=${b.index}', 1000, 500)" href="javascript:;">详情</a></td>
                                         <td>
-                                            <a class="layui-btn layui-btn-sm layui-btn-normal" title="编辑" onclick="execute_open('编辑书籍信息', 'changeborrowcard?id=${b.bcid}', 1000, 500)" href="javascript:;">编辑</a>
+                                            <a class="layui-btn layui-btn-sm layui-btn-normal" title="编辑" onclick="execute_open('编辑书籍信息', 'changebooks?id=${b.index}', 1000, 500)" href="javascript:;">编辑</a>
                                             <a class="layui-btn layui-btn-sm layui-btn-danger" title="废弃" onclick="execute_del(this, '${b.index}', 'booksmanagement.del')" href="javascript:;">废弃</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 <tr>
-                                    <a class="layui-btn layui-btn-sm layui-btn-normal" title="编辑" onclick="execute_open('新建借阅证', 'addborrowcard', 1000, 500)" href="javascript:;">新增</a>
+                                    <a class="layui-btn layui-btn-sm layui-btn-normal" title="新增" onclick="execute_open('新建借阅证', 'addbook', 1000, 500)" href="javascript:;">新增</a>
                                 </tr>
                                 </tbody>
                             </table>

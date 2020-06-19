@@ -3,13 +3,8 @@ package com.library.controller;
 import com.library.dao.BookDao;
 import com.library.dao.BorrowCardDao;
 import com.library.dao.BorrowHistoryDao;
-import com.library.pojo.BorrowCard;
-import com.library.pojo.BorrowHistory;
-import com.library.pojo.User;
-import com.library.sevice.BookSevice;
-import com.library.sevice.BorrowCardService;
-import com.library.sevice.BorrowHistoryService;
-import com.library.sevice.UserMessageService;
+import com.library.pojo.*;
+import com.library.sevice.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -38,7 +33,13 @@ public class BorrowController {
     BorrowCardDao borrowCardDao;
     BorrowCardService borrowCardService;
     UserMessageService userMessageService;
+    BookTypeService bookTypeService;
 
+
+    @Autowired
+    public void setBookTypeService(BookTypeService bookTypeService) {
+        this.bookTypeService = bookTypeService;
+    }
 
     @Autowired
     public void setBookSevice(BookSevice bookSevice) {
@@ -194,6 +195,7 @@ public class BorrowController {
         return view;
     }
     @RequestMapping("/admin/borrowinghistorymanagement.del")
+    @ResponseBody
     public Map<String,String> borrowhistorymanagementdel(@RequestParam int id) {
         Map<String,String> result = new HashMap<>();
         int a=1;
@@ -236,6 +238,7 @@ public class BorrowController {
         return view;
     }
     @RequestMapping("/admin/borrowcardmanagement.del")
+    @ResponseBody
     public Map<String,String> borrowcardmanagementdel(@RequestParam int id) {
         Map<String,String> result = new HashMap<>();
         int a=1;
@@ -285,6 +288,7 @@ public class BorrowController {
         return view;
     }
     @RequestMapping("/admin/booksmanagement.del")
+    @ResponseBody
     public Map<String,String> booksmanagementdel(@RequestParam int id) {
         Map<String,String> result = new HashMap<>();
         int a=1;
@@ -295,5 +299,85 @@ public class BorrowController {
         }
         bookDao.abandon(id);
         return result;
+    }
+
+    @RequestMapping("/admin/bookinfo")
+    @ResponseBody
+    public ModelAndView bookinfo(@RequestParam int id) {
+        ModelAndView view = new ModelAndView("/admin/bookinfo");
+        view.addObject("book",bookSevice.oneBooksData(id));
+        return view;
+    }
+    @RequestMapping("/admin/addbook")
+    @ResponseBody
+    public ModelAndView addbook(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/addbook");
+        view.addObject("booktypes",bookTypeService.getAllBookType());
+        return view;
+    }
+    @RequestMapping("/admin/addbook.save")
+    @ResponseBody
+    public ModelAndView addbooksave(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/addbook");
+        Books books = new Books();
+        int index = Integer.parseInt(request.getParameter("index"));
+        books.setIndex(index);
+        String name = request.getParameter("name");
+        books.setName(name);
+        String description = request.getParameter("description");
+        books.setDescription(description);
+        String author = request.getParameter("author");
+        books.setAuthor(author);
+        String type_index = request.getParameter("type_index");
+        books.setType_index(type_index);
+        int ISBN = Integer.parseInt(request.getParameter("ISBN"));
+        books.setISBN(ISBN);
+        int status = Integer.parseInt(request.getParameter("status"));
+        books.setStatus(status);
+        String publish = request.getParameter("publish");
+        books.setPublish(publish);
+        String locate = request.getParameter("locate");
+        books.setLocate(locate);
+        int price = Integer.parseInt(request.getParameter("price"));
+        books.setPrice(price);
+        bookDao.addBook(books);
+        return view;
+    }
+    @RequestMapping("/admin/changebooks")
+    @ResponseBody
+    public ModelAndView changebooks(@RequestParam int id,HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/changebooks");
+        view.addObject("book",bookSevice.oneBooksData(id));
+        view.addObject("booktypes",bookTypeService.getAllBookType());
+        return view;
+    }
+    @RequestMapping("/admin/changebooks.save")
+    @ResponseBody
+    public ModelAndView changebookssave(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("/admin/addbook");
+        Books books = new Books();
+        int id = Integer.parseInt(request.getParameter("id"));
+        int index = Integer.parseInt(request.getParameter("index"));
+        books.setIndex(index);
+        String name = request.getParameter("name");
+        books.setName(name);
+        String description = request.getParameter("description");
+        books.setDescription(description);
+        String author = request.getParameter("author");
+        books.setAuthor(author);
+        String type_index = request.getParameter("type_index");
+        books.setType_index(type_index);
+        int ISBN = Integer.parseInt(request.getParameter("ISBN"));
+        books.setISBN(ISBN);
+        int status = Integer.parseInt(request.getParameter("status"));
+        books.setStatus(status);
+        String publish = request.getParameter("publish");
+        books.setPublish(publish);
+        String locate = request.getParameter("locate");
+        books.setLocate(locate);
+        int price = Integer.parseInt(request.getParameter("price"));
+        books.setPrice(price);
+        bookDao.update(books,id);
+        return view;
     }
 }

@@ -68,7 +68,7 @@
                                     </tr>
                                 </c:forEach>
                                     <tr>
-                                        <a class="layui-btn layui-btn-sm layui-btn-normal" title="编辑" onclick="execute_open('新建借阅证', 'addborrowcard', 1000, 500)" href="javascript:;">新建</a>
+                                        <a class="layui-btn layui-btn-sm layui-btn-normal" title="新建" onclick="execute_open('新建借阅证', 'addborrowcard', 1000, 500)" href="javascript:;">新建</a>
                                     </tr>
                                 </tbody>
                             </table>
