@@ -180,11 +180,12 @@
             $('#date_info').val(today);
         })
 
-        function UserUDOnClicked() {
+        function UserUDOnClicked(user_account) {
             var user = {};
             user['password'] = $("input[name='password']").val();
             user['name'] = $("input[name='name']").val();
             user['phone_number'] = $("input[name='phone_number']").val();
+            user['user_account'] = user_account;
             user['email'] = $("input[name='email']").val();
             user['description'] = $("input[name='description']").val();
             $.ajax({
@@ -219,7 +220,6 @@
         <td>用户账号</td>
         <td>用户名</td>
         <td>用户类型</td>
-        <td>favoicon</td>
         <td>手机号</td>
         <td>邮箱</td>
         <td>个性签名</td>
@@ -237,12 +237,11 @@
                 <c:if test="${num.type==0}">
                     <td>管理员</td>
                 </c:if>
-                <td>${num.favoicon}</td>
                 <td>${num.phone_number}</td>
                 <td>${num.email}</td>
                 <td>${num.description}</td>
                 <td><a href="javascript:und('${num.id}');">删除</a></td>
-                <td><button type="button" onclick="dianwo1(${num.id})">修改</button></td>
+                <td><button type="button" onclick="dianwo1(${num.user_account})">修改</button></td>
             </tr>
         </c:if>
     </c:forEach>
@@ -262,7 +261,6 @@
                         <option value="1">读者</option>
                     </select>
                     <input type="number" name="type" placeholder="用户类型"  id="txtShow" style="display:none" class="txt01 f-r3 required" >
-                    <input type="text" name="favoicon" placeholder="favoicon" class="txt03 f-r3 required" >
                     <input type="number" name="phone_number" placeholder="手机号" class="txt03 f-r3 required" >
                     <input type="text" name="email" placeholder="邮箱" class="txt03 f-r3 required" >
                     <input type="text" name="description" placeholder="个性签名" class="txt03 f-r3 required" >
@@ -285,7 +283,7 @@
                     <input type="text" name="phone_number" placeholder="手机号" class="txt03 f-r3 required" >
                     <input type="text" name="email" placeholder="邮箱" class="txt03 f-r3 required" >
                     <input type="text" name="description" placeholder="个人简介">
-                    <input id="a" type="button" value="保存" onclick="UserUDOnClicked(id)"/>
+                    <input id="a" type="button" value="保存" onclick="UserUDOnClicked(user_account)"/>
                 </div>
             </div>
         </div>
@@ -303,8 +301,7 @@
         function hidder(){
             document.getElementById('zhezhao').style.display="none";
         }
-        function dianwo1(id){
-            <%! int idd = id; %>
+        function dianwo1(){
             document.getElementById('zhezhao1').style.display="";
         }
         function hidder1(){

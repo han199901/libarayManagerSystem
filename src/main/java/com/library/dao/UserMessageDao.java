@@ -51,4 +51,8 @@ public class UserMessageDao {
         });
         return user;
     }
+    public void udadmin(User user) {
+        String sql = "UPDATE user SET password = ?,name=?,phone_number=?,email=?,description=? WHERE user_account = ?";
+        this.jdbcTemplate.update(sql, user.getPassword(),user.getName(),user.getPhone_number(),user.getEmail(),user.getDescription(),user.getUser_account());
+    }
 }
