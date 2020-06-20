@@ -18,6 +18,19 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(int user_account, String password, String name, int type, String favoicon, int phone_number, String email, String description, int status, Date register_time) {
+        this.user_account = user_account;
+        this.password = password;
+        this.name = name;
+        this.type = type;
+        this.favoicon = favoicon;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.description = description;
+        this.status = status;
+        this.register_time = register_time;
+    }
+
     public User(String password, String name, int phone_number, String email, String description) {
         this.password = password;
         this.name = name;

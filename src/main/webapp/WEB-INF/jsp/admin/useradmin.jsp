@@ -45,6 +45,20 @@
             top: 5px;
             text-align: center;
         }
+        #header1{
+            height: 40px;
+        }
+        #header-right1{
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            background: red;
+            color: #fff;
+            right: 5px;
+            top: 5px;
+            text-align: center;
+        }
     </style>
     <link href="../css/style1.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../js/jquery1.min.js"></script>
@@ -127,21 +141,23 @@
     </style>
     <script type="text/javascript">
         function userAddOnClicked() {
-            var hope = {};
-            hope['name'] = $("input[name='name']").val();
-            hope['publish'] = $("input[name='publish']").val();
-            hope['user_name'] = "${sessionScope.user.name}";
-            hope['user_account'] = "${sessionScope.user.user_account}";
-
-            hope['time'] = $("input[name='time']").val();
-            hope['advice'] = $("input[name='advice']").val();
-            hope['status'] = 1;
+            var user = {};
+            user['user_account'] = $("input[name='user_account']").val();
+            user['password'] = $("input[name='password']").val();
+            user['name'] = $("input[name='name']").val();
+            user['type'] = $("input[name='type']").val();
+            user['favoicon'] = $("input[name='favoicon']").val();
+            user['phone_number'] = $("input[name='phone_number']").val();
+            user['email'] = $("input[name='email']").val();
+            user['description'] = $("input[name='description']").val();
+            user['status'] = 1;
+            user['register_time'] = $("input[name='register_time']").val();
             $.ajax({
                 type: "POST",
                 url: "/admin/useradmin/add",
                 dataType: "json",
                 contentType: "application/json",
-                data: JSON.stringify(hope),
+                data: JSON.stringify(user),
                 success: function (data) {
                     alert('恭喜你！添加成功');
                     location.reload();
@@ -156,11 +172,42 @@
             alert("删除成功！");
             location.href="useradmin.s?id="+id;
         }
-        window.onload= function(){
-            document.getElementById("t").onclick = function() {
-                document.getElementById("now").value = new Date().toLocaleString();
-            };
-        };
+        $(document).ready(function () {
+            var time = new Date();
+            var day = ("0" + time.getDate()).slice(-2);
+            var month = ("0" + (time.getMonth() + 1)).slice(-2);
+            var today = time.getFullYear() + "-" + (month) + "-" + (day);
+            $('#date_info').val(today);
+        })
+
+        function UserUDOnClicked(user_account) {
+            var user = {};
+            user['password'] = $("input[name='password']").val();
+            user['name'] = $("input[name='name']").val();
+            user['phone_number'] = $("input[name='phone_number']").val();
+            user['user_account'] = user_account;
+            user['email'] = $("input[name='email']").val();
+            user['description'] = $("input[name='description']").val();
+            $.ajax({
+                type: "POST",
+                url: "/admin/useradmin/ud",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(user),
+                success: function (data) {
+                    if (data.code==1){
+                        alert('恭喜你！修改成功');
+                        location.reload();
+                    } else {
+                        alert('必须输入用户名和密码，其他项可选填！');
+                    }
+                },
+                error: function (data) {
+                    console.log("修改失败");
+                    console.log(data);
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -173,7 +220,6 @@
         <td>用户账号</td>
         <td>用户名</td>
         <td>用户类型</td>
-        <td>favoicon</td>
         <td>手机号</td>
         <td>邮箱</td>
         <td>个性签名</td>
@@ -191,11 +237,11 @@
                 <c:if test="${num.type==0}">
                     <td>管理员</td>
                 </c:if>
-                <td>${num.favoicon}</td>
                 <td>${num.phone_number}</td>
                 <td>${num.email}</td>
                 <td>${num.description}</td>
                 <td><a href="javascript:und('${num.id}');">删除</a></td>
+                <td><button type="button" onclick="dianwo1(${num.user_account})">修改</button></td>
             </tr>
         </c:if>
     </c:forEach>
@@ -207,21 +253,37 @@
             </div>
             <div>
                 <div class="aui-register-form-item">
-                    <input type="number" name="user_account" placeholder="用户账户" class="txt01 f-r3 required" >
-                    <input type="text" name="password" placeholder="密码" class="txt01 f-r3 required" >
-                    <input type="text" name="name" placeholder="用户名" class="txt03 f-r3 required" >
+                    <input type="number" name="user_account" placeholder="用户账户" class="txt01 f-r3 required" required>
+                    <input type="text" name="password" placeholder="密码" class="txt01 f-r3 required" required>
+                    <input type="text" name="name" placeholder="用户名" class="txt03 f-r3 required" required>
                     <select id="slList" onchange="selectShow()" class="txt03 f-r3 required">
                         <option value="0">管理员</option>
                         <option value="1">读者</option>
                     </select>
                     <input type="number" name="type" placeholder="用户类型"  id="txtShow" style="display:none" class="txt01 f-r3 required" >
-                    <input type="text" name="favoicon" placeholder="favoicon" class="txt03 f-r3 required" >
                     <input type="number" name="phone_number" placeholder="手机号" class="txt03 f-r3 required" >
                     <input type="text" name="email" placeholder="邮箱" class="txt03 f-r3 required" >
                     <input type="text" name="description" placeholder="个性签名" class="txt03 f-r3 required" >
-                    <input value="获取当前时间" type="reset" id="t" />
-                    <input type="text" id="now" name="register_time" class="txt03 f-r3 required"/>
+                    <input type="date" id="date_info" name="register_time" class="txt03 f-r3 required" style="display:none"/>
                     <input type="button" value="新增" onclick="userAddOnClicked()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="zhezhao" id='zhezhao1'>
+        <div class="tankuang">
+            <div id="header1">
+                <span>修改信息</span>
+                <div id="header-right1" onclick="hidder1()">x</div>
+            </div>
+            <div>
+                <div class="aui-register-form-item">
+                    <input type="text" name="password" placeholder="密码" class="txt01 f-r3 required" >
+                    <input type="text" name="name" placeholder="用户名" class="txt01 f-r3 required" >
+                    <input type="text" name="phone_number" placeholder="手机号" class="txt03 f-r3 required" >
+                    <input type="text" name="email" placeholder="邮箱" class="txt03 f-r3 required" >
+                    <input type="text" name="description" placeholder="个人简介">
+                    <input id="a" type="button" value="保存" onclick="UserUDOnClicked(user_account)"/>
                 </div>
             </div>
         </div>
@@ -232,13 +294,21 @@
         }
 
         document.getElementById('zhezhao').style.display="none";
+        document.getElementById('zhezhao1').style.display="none";
         function dianwo(){
             document.getElementById('zhezhao').style.display="";
         }
         function hidder(){
             document.getElementById('zhezhao').style.display="none";
         }
+        function dianwo1(){
+            document.getElementById('zhezhao1').style.display="";
+        }
+        function hidder1(){
+            document.getElementById('zhezhao1').style.display="none";
+        }
     </script>
+
 </table>
 </body>
 </html>

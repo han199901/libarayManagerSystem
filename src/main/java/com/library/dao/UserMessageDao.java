@@ -1,6 +1,5 @@
 package com.library.dao;
 
-import com.library.pojo.HopeList;
 import com.library.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -40,5 +39,20 @@ public class UserMessageDao {
 
     public List<Map<String, Object>> getUserForAdmin() {
         return jdbcTemplate.queryForList(AD_GET_USER_LIST);
+    }
+
+    public void add(User user) {
+        String sql = "INSERT INTO user (user_account,password,name,type,favoicon,phone_number,email,description,status,register_time) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        this.jdbcTemplate.update(sql, user.getUser_account(),user.getPassword(),user.getName(),user.getType(),user.getFavoicon(),user.getPhone_number(),user.getEmail(),user.getDescription(),user.getStatus(),user.getRegister_time());
+    }
+    public List<User> getAll() {
+        List<User> user = this.jdbcTemplate.query("SELECT * FROM user", (rs, rownum) -> {
+            return new User(rs.getInt("user_account"),rs.getString("password"),rs.getString("name"),rs.getInt("type"),rs.getString("favoicon"),rs.getInt("phone_number"),rs.getString("email"),rs.getString("description"),rs.getInt("status"),rs.getDate("register_time"));
+        });
+        return user;
+    }
+    public void udadmin(User user) {
+        String sql = "UPDATE user SET password = ?,name=?,phone_number=?,email=?,description=? WHERE user_account = ?";
+        this.jdbcTemplate.update(sql, user.getPassword(),user.getName(),user.getPhone_number(),user.getEmail(),user.getDescription(),user.getUser_account());
     }
 }
