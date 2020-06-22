@@ -213,6 +213,7 @@ public class BorrowController {
     public ModelAndView changeborrowinghistory(@RequestParam int id,HttpServletRequest request) {
         ModelAndView view = new ModelAndView("/admin/changeborrowinghistory");
         view.addObject("id", id);
+        view.addObject("day", borrowHistoryDao.getsbday(id));
         view.addObject("username", userMessageService.userNameData());
         view.addObject("bookname", bookSevice.bookNameData());
         return view;
