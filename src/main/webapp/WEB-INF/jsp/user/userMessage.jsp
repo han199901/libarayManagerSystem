@@ -176,15 +176,30 @@
         </tr>
         <tr>
             <td>你的电话号码</td>
-            <td>${num.phone_number}</td>
+            <c:if test="${num.phone_number!=0}">
+                <td>${num.phone_number}</td>
+            </c:if>
+            <c:if test="${num.phone_number==0}">
+                <td>待完善</td>
+            </c:if>
         </tr>
         <tr>
             <td>您的邮箱</td>
-            <td>${num.email}</td>
+            <c:if test="${num.email==''}">
+                <td>待完善</td>
+            </c:if>
+            <c:if test="${num.email!=''}">
+                <td>${num.email}</td>
+            </c:if>
         </tr>
         <tr>
             <td>您的个性签名</td>
-            <td>${num.description}</td>
+            <c:if test="${num.description==''}">
+                <td>待完善</td>
+            </c:if>
+            <c:if test="${num.description!=''}">
+                <td>${num.description}</td>
+            </c:if>
         </tr>
     </c:forEach>
     <tr>
