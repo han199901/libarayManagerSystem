@@ -64,7 +64,7 @@ public class UserMessageController {
     }
 
     @RequestMapping("/admin/useradmin")
-    public ModelAndView hopelsitforadmin(HttpServletRequest request) throws IOException {
+    public ModelAndView hopelsitforadmin(@RequestParam(required=false) String search, HttpServletRequest request) throws IOException {
         /*从session处获取user*/
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -76,7 +76,7 @@ public class UserMessageController {
         else {
 
             view = new ModelAndView("/admin/useradmin");
-            HashMap<String,Object> data = (HashMap<String, Object>) userMessageService.userDataForAdmin();
+            HashMap<String,Object> data = (HashMap<String, Object>) userMessageService.userDataForAdmin(search);
             view.addObject("useradmin",data.get("useradmin"));
         }
         return view;
@@ -98,6 +98,7 @@ public class UserMessageController {
     @RequestMapping(value = "/admin/useradmin/ud", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public Map<String,String> udadminUser(@RequestBody User user)  {
+        System.out.println(user.toString());
         Map<String,String> result1 = new HashMap<>();
         if (user.getName().isEmpty()||user.getPassword().isEmpty()){
             result1.put("code","0");
