@@ -30,7 +30,7 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/")
     public ModelAndView login() {
         return new ModelAndView("login");
     }

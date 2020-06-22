@@ -15,7 +15,7 @@ public class BorrowCardDao {
         this.jdbcTemplate = jdbcTemplate;
     }
     private static final String GET_BORROW_CARD = "SELECT borrow_card.user_account uid,borrow_card.index bid,start_time,end_time,borrow_card.status bstatus,credit,user.name uname FROM borrow_card,user WHERE borrow_card.user_account = user.user_account and borrow_card.user_account = ?";
-    private static final String IST_BORROW_CARD = "INSERT INTO borrow_card (`index`, `user_account`, `start_time`, `end_time`, `status`, `credit`) VALUES (?,?,?,?,0,50)";
+    private static final String IST_BORROW_CARD = "INSERT INTO borrow_card (`index`, `user_account`, `start_time`, `end_time`, `status`, `credit`) VALUES (?,?,?,?,0,80)";
     private static final String UD_BORROW_CARD_STS = "UPDATE borrow_card SET status = ? WHERE user_account = ? AND status = ?";
     private static final String GET_BORROW_CARD_US = "SELECT status from borrow_card WHERE user_account = ? and (`status` = 1 or `status` = 0)";
     private static final String GET_BORROW_CARD_BY_USERACCOUNT = "SELECT * FROM borrow_card WHERE user_account = ?";
