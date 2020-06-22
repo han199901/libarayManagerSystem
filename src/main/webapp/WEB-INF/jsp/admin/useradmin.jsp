@@ -59,6 +59,27 @@
             top: 5px;
             text-align: center;
         }
+        .same{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            border: 0;
+            height: 30px;
+        }
+        .div{
+            width: 300px;
+            height: 32px;
+            border: solid 1px #000000;
+        }
+        .text{
+            width: 80%;
+            background-color: rgba(147, 147, 147, 0.44);
+        }
+        .btn{
+            width: 20%;
+            background-color: #59b3f3;
+        }
+
     </style>
     <link href="../css/style1.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../js/jquery1.min.js"></script>
@@ -140,13 +161,14 @@
 
     </style>
     <script type="text/javascript">
+
         function userAddOnClicked() {
             var user = {};
             user['user_account'] = $("input[name='user_account']").val();
             user['password'] = $("input[name='password']").val();
             user['name'] = $("input[name='name']").val();
             user['type'] = $("input[name='type']").val();
-            user['favoicon'] = $("input[name='favoicon']").val();
+            user['favoicon'] = 1;
             user['phone_number'] = $("input[name='phone_number']").val();
             user['email'] = $("input[name='email']").val();
             user['description'] = $("input[name='description']").val();
@@ -182,12 +204,12 @@
 
         function UserUDOnClicked(user_account) {
             var user = {};
-            user['password'] = $("input[name='password']").val();
-            user['name'] = $("input[name='name']").val();
-            user['phone_number'] = $("input[name='phone_number']").val();
+            user['password'] = $("input[name='password1']").val();
+            user['name'] = $("input[name='name1']").val();
+            user['phone_number'] = $("input[name='phone_number1']").val();
             user['user_account'] = user_account;
-            user['email'] = $("input[name='email']").val();
-            user['description'] = $("input[name='description']").val();
+            user['email'] = $("input[name='email1']").val();
+            user['description'] = $("input[name='description1']").val();
             $.ajax({
                 type: "POST",
                 url: "/admin/useradmin/ud",
@@ -211,7 +233,14 @@
     </script>
 </head>
 <body>
-<h2>所有用户</h2><button type="button" onclick="dianwo()">新增</button>
+<h2>所有用户<button type="button" onclick="dianwo()" style="font-size: medium">新增用户</button></h2>
+<div class="same div">
+<form action="#" method="POST">
+    <div class="input-group">
+            <input name="search" type="text" class="same text"><input type="submit" class="same btn">
+    </div>
+</form>
+</div>
 <hr>
 <table class="zebra">
     <hr>
@@ -237,9 +266,24 @@
                 <c:if test="${num.type==0}">
                     <td>管理员</td>
                 </c:if>
-                <td>${num.phone_number}</td>
-                <td>${num.email}</td>
-                <td>${num.description}</td>
+                <c:if test="${num.phone_number!=0}">
+                    <td>${num.phone_number}</td>
+                </c:if>
+                <c:if test="${num.phone_number==0}">
+                    <td>待完善</td>
+                </c:if>
+                <c:if test="${num.email==''}">
+                    <td>待完善</td>
+                </c:if>
+                <c:if test="${num.email!=''}">
+                    <td>${num.email}</td>
+                </c:if>
+                <c:if test="${num.description==''}">
+                    <td>待完善</td>
+                </c:if>
+                <c:if test="${num.description!=''}">
+                    <td>${num.description}</td>
+                </c:if>
                 <td><a href="javascript:und('${num.id}');">删除</a></td>
                 <td><button type="button" onclick="dianwo1(${num.user_account})">修改</button></td>
             </tr>
@@ -277,13 +321,13 @@
                 <div id="header-right1" onclick="hidder1()">x</div>
             </div>
             <div>
-                <div class="aui-register-form-item">
-                    <input type="text" name="password" placeholder="密码" class="txt01 f-r3 required" >
-                    <input type="text" name="name" placeholder="用户名" class="txt01 f-r3 required" >
-                    <input type="text" name="phone_number" placeholder="手机号" class="txt03 f-r3 required" >
-                    <input type="text" name="email" placeholder="邮箱" class="txt03 f-r3 required" >
-                    <input type="text" name="description" placeholder="个人简介">
-                    <input id="a" type="button" value="保存" onclick="UserUDOnClicked(user_account)"/>
+                <div class="aui-register-form-item" id="table4submit">
+                    <input type="text" name="password1" placeholder="密码" class="txt01 f-r3 required" >
+                    <input type="text" name="name1" placeholder="用户名" class="txt01 f-r3 required" >
+                    <input type="text" name="phone_number1" placeholder="手机号" class="txt03 f-r3 required" >
+                    <input type="text" name="email1" placeholder="邮箱" class="txt03 f-r3 required" >
+                    <input type="text" name="description1" placeholder="个人简介">
+                    <input id="a" type="button" value="保存"/>
                 </div>
             </div>
         </div>
@@ -301,8 +345,11 @@
         function hidder(){
             document.getElementById('zhezhao').style.display="none";
         }
-        function dianwo1(){
+        function dianwo1(user_account){
             document.getElementById('zhezhao1').style.display="";
+            var st = document.getElementById("a");
+            st.setAttribute("onclick","UserUDOnClicked("+user_account+")");
+            document.getElementById('table4submit').appendChild(st)
         }
         function hidder1(){
             document.getElementById('zhezhao1').style.display="none";
