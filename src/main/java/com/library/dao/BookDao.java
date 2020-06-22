@@ -74,7 +74,7 @@ public class BookDao {
         cal.setTime(date1);//设置起时间
         cal.add(Calendar.YEAR, 10);//增加十年
         String end_time = dateFormat.format(cal.getTime());
-        this.jdbcTemplate.update(ADD, books.getIndex(),books.getName(),books.getDescription(),books.getAuthor(),books.getISBN(),books.getType_index(),start_time,books.getStatus(),books.getPublish(),books.getLocate(),books.getPrice(),end_time);
+        this.jdbcTemplate.update(UPDATE, books.getIndex(),books.getName(),books.getDescription(),books.getAuthor(),books.getISBN(),books.getType_index(),start_time,books.getStatus(),books.getPublish(),books.getLocate(),books.getPrice(),end_time);
     }
     public void update(Books books,int id) {
         this.jdbcTemplate.update(ADD, books.getIndex(),books.getName(),books.getDescription(),books.getAuthor(),books.getISBN(),books.getType_index(),books.getStatus(),books.getPublish(),books.getLocate(),books.getPrice(),id);

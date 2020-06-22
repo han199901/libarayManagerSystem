@@ -33,7 +33,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">书本编号</label>
             <div class="layui-input-inline">
-                <input type="value" name="index" id="index"  autocomplete="off" class="layui-input">
+                <input type="number" name="index" id="index"  class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
@@ -76,7 +76,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">ISBN</label>
             <div class="layui-input-inline">
-                <input type="value" name="ISBN" id="ISBN"  autocomplete="off" class="layui-input">
+                <input type="number" name="ISBN" id="ISBN"  class="layui-input">
             </div>
         </div>
     </div>
@@ -110,7 +110,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">价格</label>
         <div class="layui-input-inline">
-            <input type="value" name="price" id="price"  placeholder="￥" autocomplete="off" class="layui-input">
+            <input type="number" name="price" id="price"  placeholder="￥" class="layui-input">
         </div>
     </div>
 

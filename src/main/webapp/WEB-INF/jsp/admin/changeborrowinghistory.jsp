@@ -80,7 +80,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">超时天数</label>
                 <div class="layui-input-inline layer-inputs">
-                    <input type="number" oninput="this.value=this.value.length>3?this.value.substr(0,3):this.value;" name="overtime" id="overtime" value=0 placeholder="请输入超时天数" class="layui-input">
+                    <input type="number" oninput="this.value=this.value.length>3?this.value.substr(0,3):this.value;" name="overtime" id="overtime" value="${day}" placeholder="请输入超时天数" class="layui-input">
                 </div>
                 <div class="layui-form-midf layui-word-aux">请输入超时天数</div>
             </div>

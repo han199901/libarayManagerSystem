@@ -30,6 +30,7 @@ public class BorrowHistoryDao {
     private static final String GET_ALL_BORROW_HISTORY = "SELECT borrow_history.id bhid,user.name uname,books.name bname,start_time,end_time,overtime,borrow_history.status bhstatus from borrow_history,user,books where borrow_history.user_account=user.user_account and borrow_history.book_index=books.index and (borrow_history.status = 0 or borrow_history.status = 1)";
     private static final String DEL_BORROW_HISTORY_BY_ID = "UPDATE borrow_history SET status = 2 WHERE id = ?";
     private static final String DEL_BORROW_HISTORY = "UPDATE borrow_history SET user_account = ?,book_index = ?,overtime = ?,status = ? WHERE id = ?";
+    private static final String GET_SB_OVERTIME = "SELECT overtime FROM `borrow_history` WHERE id =?";
 
     public int insert(BorrowHistory borrowHistory) {
         return jdbcTemplate.update(INSERT,new Object[]{borrowHistory.getUser_account(),borrowHistory.getStart_time(),borrowHistory.getEnd_time(),borrowHistory.getBook_index()});
@@ -83,5 +84,9 @@ public class BorrowHistoryDao {
 
     public int updateBorrowingHistory(int id, int user_account, int book_index, int overtime, int status) {
         return jdbcTemplate.update(DEL_BORROW_HISTORY,new Object[]{user_account,book_index,overtime,status,id});
+    }
+
+    public int  getsbday(int id) {
+        return jdbcTemplate.queryForObject(GET_SB_OVERTIME,new Object[]{id},Integer.class);
     }
 }
