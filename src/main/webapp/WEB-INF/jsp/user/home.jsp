@@ -380,7 +380,7 @@
                         <li class="left-li"><a class="J_menuItem" href="/admin/borrowcardmanagement"><i
                                 class="fa fa-dashboard"></i><span>借阅证管理</span></a></li>
                         <li class="g_heading">图书管理</li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                        <li class="left-li"><a class="J_menuItem" href="/admin/booktypelist"><i
                                 class="fa fa-dashboard"></i><span>图书种类管理</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/admin/booksmanagement"><i
                                 class="fa fa-dashboard"></i><span>图书管理</span></a></li>
