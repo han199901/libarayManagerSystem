@@ -42,18 +42,6 @@
                             <input type="number" readonly="true" class="layui-input" name="user_account" value="${info.user_account}"/>
                         </div>
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">公告开始日期</label>
-                        <div class="layui-input-inline">
-                            <input type="datetime-local" class="layui-input" name="start_time" placeholder="yyyy-MM-dd HH:mm:ss" value="${info.start_time}">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">公告结束日期</label>
-                        <div class="layui-input-inline">
-                            <input type="datetime-local" class="layui-input" name="end_time" placeholder="yyyy-MM-dd HH:mm:ss" value="${info.end_time}">
-                        </div>
-                    </div>
 
                     <div class="layui-form-item">
                         <label class="layui-form-label">

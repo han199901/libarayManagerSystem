@@ -83,14 +83,14 @@
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="nav-link icon menu_toggle"><i
                             class="fe fe-align-center"></i></a>
-                    <a href="/blank" class="nav-link icon"><i class="fe fe-search" data-toggle="tooltip"
+                    <a href="/user/search" class="nav-link icon J_menuItem"><i class="fe fe-search"  data-toggle="tooltip"
                                                               data-placement="right" title="Search..."></i></a>
                     <a href="javascript:void(0)" class="nav-link icon right_tab"><i class="fe fe-bell"></i></a>
                     <a href="javascript:void(0)" class="nav-link icon settingbar"><i class="fe fe-settings"></i></a>
                 </div>
             </div>
             <div class="hright">
-                <a href="login.html" class="nav-link icon settingbar"><i class="fe fe-power"></i></a>
+                <a href="/" class="nav-link icon settingbar"><i class="fe fe-power"></i></a>
             </div>
         </div>
     </div>
@@ -380,7 +380,7 @@
                         <li class="left-li"><a class="J_menuItem" href="/admin/borrowcardmanagement"><i
                                 class="fa fa-dashboard"></i><span>借阅证管理</span></a></li>
                         <li class="g_heading">图书管理</li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
+                        <li class="left-li"><a class="J_menuItem" href="/admin/booktypelist"><i
                                 class="fa fa-dashboard"></i><span>图书种类管理</span></a></li>
                         <li class="left-li"><a class="J_menuItem" href="/admin/booksmanagement"><i
                                 class="fa fa-dashboard"></i><span>图书管理</span></a></li>
@@ -389,8 +389,6 @@
                         <li class="g_heading">网站管理</li>
                         <li class="left-li"><a class="J_menuItem" href="/admin/noticelist"><i
                                 class="fa fa-dashboard"></i><span>公告管理</span></a></li>
-                        <li class="left-li"><a class="J_menuItem" href="/blank"><i
-                                class="fa fa-dashboard"></i><span>统计报表</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -429,7 +427,7 @@
                             <div class="dropdown d-flex">
                                 <a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
                                     <span class="avatar"
-                                          style="background-image: url(../assets/images/xs/avatar5.jpg)"></span> George</a>
+                                          style="background-image: url(../assets/images/xs/avatar5.jpg)"></span> ${user.name}</a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                     <c:if test="${credit!=-1}">
                                       信誉等级：Lv.${credit}
@@ -447,7 +445,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:void(0)"><i
                                             class="dropdown-icon fe fe-help-circle"></i>帮助</a>
-                                    <a class="dropdown-item" href="/blank"><i class="dropdown-icon fe fe-log-out"></i>退出账号</a>
+                                    <a class="dropdown-item" href="/"><i class="dropdown-icon fe fe-log-out"></i>退出账号</a>
                                 </div>
                             </div>
                         </div>
